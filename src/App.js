@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Summary from "./splendor/component/header/summary";
+import Board from "./splendor/component/body/board";
+import MyBoard from "./splendor/component/footer/myboard";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Summary />
+      <Board />
+      <MyBoard />
     </div>
   );
 }
