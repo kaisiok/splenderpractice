@@ -1,7 +1,7 @@
 import "./App.css";
 import Summary from "./splendor/component/header/summary";
 import Board from "./splendor/component/body/board";
-import MyBoard from "./splendor/component/footer/myboard";
+import MyBoard from "./splendor/component/footer/myBoard";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
 

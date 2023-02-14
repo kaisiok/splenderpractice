@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const TokensWrap = styled.div`
   background-color: skyblue;
+  width: 50%;
 `;
 
 function Tokens({ tokens }) {

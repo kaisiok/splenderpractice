@@ -3,6 +3,7 @@ import Card from "./card";
 
 const CardsWrap = styled.div`
   background-color: pink;
+  width: 60%;
 `;
 
 function Cards({ cards }) {

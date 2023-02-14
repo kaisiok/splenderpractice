@@ -1,0 +1,112 @@
+export const tileState = [
+  {
+    id: "tile1",
+    score: 3,
+    cost: {
+      emeraldCard: 0,
+      diamondCard: 3,
+      sapphireCard: 3,
+      onyxCard: 3,
+      rubyCard: 0,
+    },
+  },
+  {
+    id: "tile2",
+    score: 3,
+    cost: {
+      emeraldCard: 0,
+      diamondCard: 4,
+      sapphireCard: 4,
+      onyxCard: 0,
+      rubyCard: 0,
+    },
+  },
+  {
+    id: "tile3",
+    score: 3,
+    cost: {
+      emeraldCard: 4,
+      diamondCard: 0,
+      sapphireCard: 0,
+      onyxCard: 0,
+      rubyCard: 4,
+    },
+  },
+  {
+    id: "tile4",
+    score: 3,
+    cost: {
+      emeraldCard: 0,
+      diamondCard: 0,
+      sapphireCard: 0,
+      onyxCard: 4,
+      rubyCard: 4,
+    },
+  },
+  {
+    id: "tile5",
+    score: 3,
+    cost: {
+      emeraldCard: 4,
+      diamondCard: 0,
+      sapphireCard: 4,
+      onyxCard: 0,
+      rubyCard: 0,
+    },
+  },
+  {
+    id: "tile6",
+    score: 3,
+    cost: {
+      emeraldCard: 3,
+      diamondCard: 0,
+      sapphireCard: 3,
+      onyxCard: 0,
+      rubyCard: 3,
+    },
+  },
+  {
+    id: "tile7",
+    score: 3,
+    cost: {
+      emeraldCard: 0,
+      diamondCard: 3,
+      sapphireCard: 0,
+      onyxCard: 3,
+      rubyCard: 3,
+    },
+  },
+  {
+    id: "tile8",
+    score: 3,
+    cost: {
+      emeraldCard: 3,
+      diamondCard: 3,
+      sapphireCard: 3,
+      onyxCard: 0,
+      rubyCard: 0,
+    },
+  },
+  {
+    id: "tile9",
+    score: 3,
+    cost: {
+      emeraldCard: 3,
+      diamondCard: 0,
+      sapphireCard: 0,
+      onyxCard: 3,
+      rubyCard: 3,
+    },
+  },
+  {
+    id: "tile10",
+    score: 3,
+    cost: {
+      emeraldCard: 0,
+      diamondCard: 4,
+      sapphireCard: 0,
+      onyxCard: 4,
+      rubyCard: 0,
+    },
+  },
+];

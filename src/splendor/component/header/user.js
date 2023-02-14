@@ -4,19 +4,24 @@ import Hand from "./hand";
 
 const UserWrap = styled.div`
   background-color: gray;
+  width: 24%;
+  margin: auto;
+`;
+
+const UserInfoWrap = styled.div`
   display: flex;
 `;
 
 function User({ user }) {
   return (
-    <div>
+    <UserWrap>
       {user.id}
       <div> score:{user.score}</div>
-      <UserWrap>
+      <UserInfoWrap>
         <Cards cards={user.cards} />
         <Hand tokens={user.tokens} hands={user.hands} />
-      </UserWrap>
-    </div>
+      </UserInfoWrap>
+    </UserWrap>
   );
 }
 

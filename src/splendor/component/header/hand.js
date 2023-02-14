@@ -5,10 +5,11 @@ import HandedCard from "./handedCard";
 const HandWrap = styled.div`
   background-color: purple;
   display: flex;
+  width: 40%;
 `;
 const HandedCardWrap = styled.div`
   background-color: yellowgreen;
-  width: 100px;
+  width: 50%;
   height: 100%;
 `;
 

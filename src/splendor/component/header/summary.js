@@ -5,6 +5,9 @@ import User from "./user";
 const SummaryWrap = styled.div`
   background-color: red;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
 `;
 
 function Summary() {
