@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import Token from "./token";
 
 const TokensWrap = styled.div`
@@ -13,14 +14,16 @@ const TokensWrap = styled.div`
 `;
 
 function Tokens() {
+  const tokens = useSelector((state) => state.token);
+
   return (
     <TokensWrap>
-      <Token token={"emerald"} />
-      <Token token={"diamond"} />
-      <Token token={"sapphire"} />
-      <Token token={"onyx"} />
-      <Token token={"ruby"} />
-      <Token token={"gold"} />
+      <Token type={"emerald"} number={tokens.emeraldToken} />
+      <Token type={"diamond"} number={tokens.diamondToken} />
+      <Token type={"sapphire"} number={tokens.sapphireToken} />
+      <Token type={"onyx"} number={tokens.onyxToken} />
+      <Token type={"ruby"} number={tokens.rubyToken} />
+      <Token type={"gold"} number={tokens.goldToken} />
     </TokensWrap>
   );
 }

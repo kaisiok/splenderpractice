@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Tile from "./tile";
+import { useSelector } from "react-redux";
 
 const TilesWrap = styled.div`
   background-color: white;
@@ -27,18 +28,40 @@ const TilesBottomWrap = styled.div`
 `;
 
 function Tiles() {
+  const tileOnBoard = useSelector((state) => state.tile);
+
   return (
     <TilesWrap>
       <TilesTopWrap>
-        <Tile />
-        <Tile />
+        <Tile
+          key={tileOnBoard[0].id}
+          score={tileOnBoard[0].score}
+          cost={tileOnBoard[0].cost}
+        />
+        <Tile
+          key={tileOnBoard[1].id}
+          score={tileOnBoard[1].score}
+          cost={tileOnBoard[1].cost}
+        />
       </TilesTopWrap>
       <TilesMiddleWrap>
-        <Tile />
+        <Tile
+          key={tileOnBoard[2].id}
+          score={tileOnBoard[2].score}
+          cost={tileOnBoard[2].cost}
+        />
       </TilesMiddleWrap>
       <TilesBottomWrap>
-        <Tile />
-        <Tile />
+        <Tile
+          key={tileOnBoard[3].id}
+          score={tileOnBoard[3].score}
+          cost={tileOnBoard[3].cost}
+        />
+        <Tile
+          key={tileOnBoard[4].id}
+          score={tileOnBoard[4].score}
+          cost={tileOnBoard[4].cost}
+        />
       </TilesBottomWrap>
     </TilesWrap>
   );

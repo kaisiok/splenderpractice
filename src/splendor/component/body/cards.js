@@ -13,9 +13,9 @@ const CardsWrap = styled.div`
 function Cards() {
   return (
     <CardsWrap>
-      <Tiers />
-      <Tiers />
-      <Tiers />
+      <Tiers tier={"tier1"} />
+      <Tiers tier={"tier2"} />
+      <Tiers tier={"tier3"} />
     </CardsWrap>
   );
 }

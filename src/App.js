@@ -2,10 +2,19 @@ import "./App.css";
 import Summary from "./splendor/component/header/summary";
 import Board from "./splendor/component/body/board";
 import MyBoard from "./splendor/component/footer/myBoard";
-import { store } from "./redux/store";
-import { Provider } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { shuffleCard } from "./redux/reducers/cardSlice";
+import { shuffleTile } from "./redux/reducers/tileSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(shuffleCard());
+    dispatch(shuffleTile());
+  }, []);
+
   return (
     <div className="App">
       <Summary />

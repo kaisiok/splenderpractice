@@ -6,8 +6,12 @@ const TokenWrap = styled.div`
   height: 10%;
 `;
 
-function Token({ token }) {
-  return <TokenWrap>{token}</TokenWrap>;
+function Token({ type, number }) {
+  return (
+    <TokenWrap>
+      {type}: {number}E/A
+    </TokenWrap>
+  );
 }
 
 export default Token;

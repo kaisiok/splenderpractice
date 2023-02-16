@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Card from "./card";
 import CardDeck from "./cardDeck";
+import { useSelector } from "react-redux";
 
 const TiersWrap = styled.div`
   display: flex;
@@ -17,15 +18,24 @@ const CardsWrap = styled.div`
   width: 90%;
 `;
 
-function Tiers() {
+function Tiers({ tier }) {
+  const cardOnBoard = useSelector((state) => state.card.cardOnBoard[tier]);
+
   return (
     <TiersWrap>
-      <CardDeck />
+      <CardDeck tier={tier} />
       <CardsWrap>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {cardOnBoard.map((el) => {
+          return (
+            <Card
+              key={el.id}
+              tier={el.tier}
+              score={el.score}
+              cost={el.cost}
+              type={el.type}
+            />
+          );
+        })}
       </CardsWrap>
     </TiersWrap>
   );
