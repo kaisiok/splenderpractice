@@ -6,8 +6,13 @@ const MyTokenWrap = styled.div`
   width: 15%;
 `;
 
-function MyToken() {
-  return <MyTokenWrap>mytoken</MyTokenWrap>;
+function MyToken({ type, number }) {
+  return (
+    <MyTokenWrap>
+      <div>{type}</div>
+      <div>{number}</div>
+    </MyTokenWrap>
+  );
 }
 
 export default MyToken;

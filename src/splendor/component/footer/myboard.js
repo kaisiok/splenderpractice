@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { decrement, increment } from "../../../redux/reducers/testSlice";
+import { nextTurn } from "../../../redux/reducers/turnSlice";
 import MyCards from "./myCards";
 import MyHand from "./myHand";
 import MyInfo from "./myInfo";
@@ -20,11 +20,11 @@ function MyBoard() {
 
   return (
     <MyBoardWrap>
-      <DoUndoButten onClick={() => dispatch(increment())}>undo</DoUndoButten>
+      <DoUndoButten onClick={() => dispatch()}>undo</DoUndoButten>
       <MyCards />
       <MyHand />
       <MyInfo />
-      <DoUndoButten onClick={() => dispatch(decrement())}>next</DoUndoButten>
+      <DoUndoButten onClick={() => dispatch(nextTurn())}>next</DoUndoButten>
     </MyBoardWrap>
   );
 }

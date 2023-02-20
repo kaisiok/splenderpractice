@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import Token from "./token";
+import TokenModal from "./tokenModal";
 
 const TokensWrap = styled.div`
   background-color: gainsboro;
@@ -14,16 +16,26 @@ const TokensWrap = styled.div`
 `;
 
 function Tokens() {
+  const [openModal, setOpenModal] = useState(false);
   const tokens = useSelector((state) => state.token);
 
+  const handleClick = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
+
   return (
-    <TokensWrap>
+    <TokensWrap onClick={handleClick}>
       <Token type={"emerald"} number={tokens.emeraldToken} />
       <Token type={"diamond"} number={tokens.diamondToken} />
       <Token type={"sapphire"} number={tokens.sapphireToken} />
       <Token type={"onyx"} number={tokens.onyxToken} />
       <Token type={"ruby"} number={tokens.rubyToken} />
-      <Token type={"gold"} number={tokens.goldToken} />
+      <Token type={"gold"} number={tokens.goldToken} />{" "}
+      <TokenModal open={openModal} onClose={handleClose} />
     </TokensWrap>
   );
 }
