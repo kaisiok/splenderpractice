@@ -4,9 +4,20 @@ import { tokenState } from "../tokenState";
 export const tokenSlice = createSlice({
   name: "tokenStates",
   initialState: tokenState,
-  reducers: {},
+  reducers: {
+    getToken: (state, payload) => {
+      Object.assign(state, payload.payload);
+    },
+    cancelGetToken: (state, payload) => {
+      for (let key in state) {
+        if (payload.payload[key]) {
+          state[key] += payload.payload[key];
+        }
+      }
+    },
+  },
 });
 
-export const {} = tokenSlice.actions;
+export const { getToken, cancelGetToken } = tokenSlice.actions;
 
 export default tokenSlice.reducer;

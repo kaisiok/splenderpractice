@@ -9,7 +9,7 @@ import turnReducer from "./reducers/turnSlice";
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    token: tokenReducer,
+    tokens: tokenReducer,
     card: cardReducer,
     tile: tileReducer,
     turn: turnReducer,

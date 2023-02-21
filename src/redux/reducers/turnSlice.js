@@ -4,7 +4,7 @@ const turnState = {
   activatedPlayer: 1,
   canPlay: true,
   action: "",
-  token: {
+  tokens: {
     emeraldToken: 0,
     diamondToken: 0,
     sapphireToken: 0,
@@ -37,10 +37,16 @@ export const turnSlice = createSlice({
       } else {
         state.activatedPlayer = 1;
       }
+      state.canPlay = true;
+    },
+    getTokenInTurn: (state, payload) => {
+      state.canPlay = false;
+      state.action = "tokens";
+      Object.assign(state.tokens, payload.payload);
     },
   },
 });
 
-export const { nextTurn } = turnSlice.actions;
+export const { nextTurn, getTokenInTurn } = turnSlice.actions;
 
 export default turnSlice.reducer;

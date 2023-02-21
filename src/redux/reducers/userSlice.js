@@ -4,9 +4,18 @@ import { userStates } from "../userState";
 export const userSlice = createSlice({
   name: "userStates",
   initialState: userStates,
-  reducers: {},
+  reducers: {
+    getTokenUser: (state, payload) => {
+      for (let key in state[payload.payload.id - 1].tokens) {
+        if (payload.payload.tokens[key]) {
+          state[payload.payload.id - 1].tokens[key] +=
+            payload.payload.tokens[key];
+        }
+      }
+    },
+  },
 });
 
-export const {} = userSlice.actions;
+export const { getTokenUser } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -17,10 +17,13 @@ const TokensWrap = styled.div`
 
 function Tokens() {
   const [openModal, setOpenModal] = useState(false);
-  const tokens = useSelector((state) => state.token);
+  const tokens = useSelector((state) => state.tokens);
+  const isActivated = useSelector((state) => state.turn.canPlay);
 
   const handleClick = () => {
-    setOpenModal(true);
+    if (isActivated) {
+      setOpenModal(true);
+    }
   };
 
   const handleClose = () => {

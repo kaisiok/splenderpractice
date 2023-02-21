@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { createPortal } from "react-dom";
+import { getTokenInTurn } from "../../../redux/reducers/turnSlice";
+import { getToken, cancelGetToken } from "../../../redux/reducers/tokenSlice";
+import { getTokenUser } from "../../../redux/reducers/userSlice";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -40,10 +43,11 @@ const ModalClose = styled.button`
 `;
 
 function TokenModal({ open, onClose }) {
-  const [tokenInModal, setTokenInModal] = useState(
-    useSelector((state) => state.token)
-  );
+  const tokenInModal = useSelector((state) => state.tokens);
   const [selectedToken, setSelectedToken] = useState({});
+  const [isTokenSelected, setIsTokenSelected] = useState(false);
+  const dispatch = useDispatch();
+  const turnInfo = useSelector((state) => state.turn);
 
   function tokenSelect(string) {
     if (string in selectedToken) {
@@ -51,18 +55,19 @@ function TokenModal({ open, onClose }) {
       const newTokenInModal = Object.assign({}, tokenInModal);
       newSelectedToken[string] += 1;
       newTokenInModal[string] -= 1;
-      setTokenInModal(newTokenInModal);
+      dispatch(getToken(newTokenInModal));
       setSelectedToken(newSelectedToken);
     } else {
       const newSelectedToken = Object.assign({}, selectedToken);
       const newTokenInModal = Object.assign({}, tokenInModal);
       newSelectedToken[string] = 1;
       newTokenInModal[string] -= 1;
-      setTokenInModal(newTokenInModal);
+      dispatch(getToken(newTokenInModal));
       setSelectedToken(newSelectedToken);
     }
+    setIsTokenSelected(true);
   }
-  //토큰 유효성 검사 함수를 만든다.(true나 false 반환) 이 함수를 아래 if문에 넣는다.
+
   function validateToken(string) {
     let sum = 0;
     let result = true;
@@ -79,12 +84,15 @@ function TokenModal({ open, onClose }) {
         result = string;
       }
     }
-
     return result;
   }
 
   function buttonDisabled(string) {
-    if (tokenInModal[string] === 0 || validateToken(string) === false) {
+    if (
+      tokenInModal[string] === 0 ||
+      validateToken(string) === false ||
+      string === "goldToken"
+    ) {
       return true;
     } else if (selectedToken[string] === 1 && tokenInModal[string] < 3) {
       return true;
@@ -93,13 +101,33 @@ function TokenModal({ open, onClose }) {
     }
     return false;
   }
+  function handleConfirm() {
+    dispatch(getTokenInTurn(selectedToken));
+    dispatch(
+      getTokenUser({ id: turnInfo.activatedPlayer, tokens: selectedToken })
+    );
+    setSelectedToken({});
+    setIsTokenSelected(false);
+  }
+  function hadleCancel() {
+    dispatch(cancelGetToken(selectedToken));
+    setSelectedToken({});
+    setIsTokenSelected(false);
+  }
+
+  function hadleModalClose() {
+    if (!isTokenSelected) {
+      onClose();
+    }
+  }
+  //취소시 되돌리기, 확정시 유저 정보에 저장하기 ,넥스트 누를시 버튼 다시 활성화(selectedToken)
 
   if (!open) return null;
   return createPortal(
     <div onClick={(e) => e.stopPropagation()}>
-      <ModalOverlay onClick={onClose}>
+      <ModalOverlay onClick={hadleModalClose}>
         <ModalContent onClick={(e) => e.stopPropagation()}>
-          <ModalClose onClick={onClose}>&times;</ModalClose>{" "}
+          <ModalClose onClick={hadleModalClose}>&times;</ModalClose>{" "}
           <h1>토큰을 고른 후 확인버튼을 눌러주세요</h1>
           {Object.keys(tokenInModal).map((el) => {
             return (
@@ -126,8 +154,12 @@ function TokenModal({ open, onClose }) {
               );
             })}
           </div>
-          <button onClick={onClose}>취소</button>
-          <button>확인</button>
+          <div onClick={onClose}>
+            <button onClick={hadleCancel}>취소</button>
+            <button onClick={handleConfirm} disabled={!isTokenSelected}>
+              확인
+            </button>
+          </div>
         </ModalContent>
       </ModalOverlay>
     </div>,
