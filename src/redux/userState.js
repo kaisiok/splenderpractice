@@ -18,6 +18,7 @@ export const userStates = [
       goldToken: 0,
     },
     hands: [],
+    tiles: [],
   },
   {
     id: "user2",
@@ -38,6 +39,7 @@ export const userStates = [
       goldToken: 0,
     },
     hands: [],
+    tiles: [],
   },
   {
     id: "user3",
@@ -58,6 +60,7 @@ export const userStates = [
       goldToken: 0,
     },
     hands: [],
+    tiles: [],
   },
   {
     id: "user4",
@@ -78,5 +81,6 @@ export const userStates = [
       goldToken: 0,
     },
     hands: [],
+    tiles: [],
   },
 ];

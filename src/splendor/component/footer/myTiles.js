@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import MyTile from "./myTile";
 
 const MyTilesWrap = styled.div`
@@ -10,13 +11,15 @@ const MyTilesWrap = styled.div`
   align-items: center;
 `;
 function MyTiles() {
+  const activatedPlayer = useSelector((state) => state.turn.activatedPlayer);
+  const userTiles = useSelector(
+    (state) => state.user[activatedPlayer - 1].tiles
+  );
   return (
     <MyTilesWrap>
-      <MyTile />
-      <MyTile />
-      <MyTile />
-      <MyTile />
-      <MyTile />
+      {userTiles.map((el) => {
+        return <MyTile key={el.id} info={el} />;
+      })}
     </MyTilesWrap>
   );
 }

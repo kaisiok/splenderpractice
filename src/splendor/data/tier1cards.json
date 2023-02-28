@@ -241,7 +241,7 @@
     "id": "1t35",
     "tier": 1,
     "score": 1,
-    "cost": { "emerald": 0, "diamond": 4, "sapphire": 0, "onyx": 3, "ruby": 0 },
+    "cost": { "emerald": 0, "diamond": 4, "sapphire": 0, "onyx": 0, "ruby": 0 },
     "type": "ruby"
   },
   {

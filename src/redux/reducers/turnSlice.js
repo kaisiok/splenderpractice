@@ -25,6 +25,10 @@ const turnState = {
     id: "",
     goldToken: 0,
   },
+  getTile: {
+    status: false,
+    tileInfo: {},
+  },
 };
 
 export const turnSlice = createSlice({
@@ -44,9 +48,37 @@ export const turnSlice = createSlice({
       state.action = "tokens";
       Object.assign(state.tokens, payload.payload);
     },
+    buyCardInTurn: (state, payload) => {
+      state.canPlay = false;
+      state.action = "buyCard";
+      state.buyCard.id = payload.payload.selectedCard.id;
+      Object.assign(state.buyCard.cost, payload.payload.selectedCard.cost);
+    },
+    bringCardInTurn: (state, payload) => {
+      state.canPlay = false;
+      state.action = "bringCard";
+      state.bringCard.id = payload.payload.selectedCard.id;
+      if (payload.payload.remainGoldToken > 0) {
+        state.bringCard.goldToken = 1;
+      }
+    },
+    getTileInTurn: (state, payload) => {
+      state.getTile.status = true;
+      state.getTile.tileInfo = payload.payload.tile;
+    },
+    notGetTileInTurn: (state) => {
+      state.getTile.status = false;
+    },
   },
 });
 
-export const { nextTurn, getTokenInTurn } = turnSlice.actions;
+export const {
+  nextTurn,
+  getTokenInTurn,
+  buyCardInTurn,
+  bringCardInTurn,
+  getTileInTurn,
+  notGetTileInTurn,
+} = turnSlice.actions;
 
 export default turnSlice.reducer;

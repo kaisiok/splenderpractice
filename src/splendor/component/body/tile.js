@@ -11,11 +11,13 @@ function Tile({ score, cost }) {
     <TileWrap>
       {score}
       <div>
-        {cost.diamondCard > 1 ? <div>diamond {cost.diamondCard}</div> : null}
-        {cost.emeraldCard > 1 ? <div>emerald {cost.emeraldCard}</div> : null}
-        {cost.sapphireCard > 1 ? <div>sapphire {cost.sapphireCard}</div> : null}
-        {cost.onyxCard > 1 ? <div>onyx {cost.onyxCard}</div> : null}
-        {cost.rubyCard > 1 ? <div>ruby {cost.rubyCard}</div> : null}
+        {cost.diamondCards > 1 ? <div>diamond {cost.diamondCards}</div> : null}
+        {cost.emeraldCards > 1 ? <div>emerald {cost.emeraldCards}</div> : null}
+        {cost.sapphireCards > 1 ? (
+          <div>sapphire {cost.sapphireCards}</div>
+        ) : null}
+        {cost.onyxCards > 1 ? <div>onyx {cost.onyxCards}</div> : null}
+        {cost.rubyCards > 1 ? <div>ruby {cost.rubyCards}</div> : null}
       </div>
     </TileWrap>
   );

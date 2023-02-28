@@ -15,9 +15,12 @@ export const tokenSlice = createSlice({
         }
       }
     },
+    getGoldToken: (state) => {
+      state.goldToken -= 1;
+    },
   },
 });
 
-export const { getToken, cancelGetToken } = tokenSlice.actions;
+export const { getToken, cancelGetToken, getGoldToken } = tokenSlice.actions;
 
 export default tokenSlice.reducer;

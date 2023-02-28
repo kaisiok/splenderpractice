@@ -19,7 +19,7 @@ function Hand({ tokens, hands }) {
       <Tokens tokens={tokens} />
       <HandedCardWrap>
         {hands.map((el) => {
-          return <HandedCard card={el} />;
+          return <HandedCard key={el.id} card={el} />;
         })}
       </HandedCardWrap>
     </HandWrap>

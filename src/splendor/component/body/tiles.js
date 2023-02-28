@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import Tile from "./tile";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getTile } from "../../../redux/reducers/tileSlice";
+import { getTileUser } from "../../../redux/reducers/userSlice";
+import {
+  getTileInTurn,
+  notGetTileInTurn,
+} from "../../../redux/reducers/turnSlice";
 
 const TilesWrap = styled.div`
   background-color: white;
@@ -29,39 +36,84 @@ const TilesBottomWrap = styled.div`
 
 function Tiles() {
   const tileOnBoard = useSelector((state) => state.tile);
+  const tileCheck = useSelector((state) => state.turn.canPlay);
+  const activatedPlayer = useSelector((state) => state.turn.activatedPlayer);
+  const userInfo = useSelector((state) => state.user[activatedPlayer - 1]);
+
+  const dispatch = useDispatch();
+
+  function canGetTile(tileArr, cardsObj) {
+    for (let i = 0; i < tileArr.length; i++) {
+      if (tileArr[i]) {
+        let cost = tileArr[i].cost;
+        let check = true;
+        for (let j in cost) {
+          if (cardsObj[j].length < cost[j]) {
+            check = false;
+          }
+        }
+        if (check) {
+          return i;
+        }
+      }
+    }
+    return;
+  }
+
+  useEffect(() => {
+    const tileIdx = canGetTile(tileOnBoard, userInfo.cards);
+    const payload = { activatedPlayer, tile: tileOnBoard[tileIdx] };
+    if (tileIdx !== undefined) {
+      dispatch(getTileUser(payload));
+      dispatch(getTileInTurn(payload));
+      dispatch(getTile(tileIdx));
+    } else {
+      dispatch(notGetTileInTurn());
+    }
+  }, [tileCheck]);
 
   return (
     <TilesWrap>
       <TilesTopWrap>
-        <Tile
-          key={tileOnBoard[0].id}
-          score={tileOnBoard[0].score}
-          cost={tileOnBoard[0].cost}
-        />
-        <Tile
-          key={tileOnBoard[1].id}
-          score={tileOnBoard[1].score}
-          cost={tileOnBoard[1].cost}
-        />
+        {tileOnBoard[0] ? (
+          <Tile
+            key={tileOnBoard[0].id}
+            score={tileOnBoard[0].score}
+            cost={tileOnBoard[0].cost}
+          />
+        ) : null}
+        {tileOnBoard[1] ? (
+          <Tile
+            key={tileOnBoard[1].id}
+            score={tileOnBoard[1].score}
+            cost={tileOnBoard[1].cost}
+          />
+        ) : null}
       </TilesTopWrap>
       <TilesMiddleWrap>
-        <Tile
-          key={tileOnBoard[2].id}
-          score={tileOnBoard[2].score}
-          cost={tileOnBoard[2].cost}
-        />
+        {tileOnBoard[2] ? (
+          <Tile
+            key={tileOnBoard[2].id}
+            score={tileOnBoard[2].score}
+            cost={tileOnBoard[2].cost}
+          />
+        ) : null}
       </TilesMiddleWrap>
       <TilesBottomWrap>
-        <Tile
-          key={tileOnBoard[3].id}
-          score={tileOnBoard[3].score}
-          cost={tileOnBoard[3].cost}
-        />
-        <Tile
-          key={tileOnBoard[4].id}
-          score={tileOnBoard[4].score}
-          cost={tileOnBoard[4].cost}
-        />
+        {tileOnBoard[3] ? (
+          <Tile
+            key={tileOnBoard[3].id}
+            score={tileOnBoard[3].score}
+            cost={tileOnBoard[3].cost}
+          />
+        ) : null}
+        {tileOnBoard[4] ? (
+          <Tile
+            key={tileOnBoard[4].id}
+            score={tileOnBoard[4].score}
+            cost={tileOnBoard[4].cost}
+          />
+        ) : null}
       </TilesBottomWrap>
     </TilesWrap>
   );

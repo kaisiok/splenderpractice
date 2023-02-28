@@ -12,9 +12,12 @@ export const tileSlice = createSlice({
       }
       arr.splice(5);
     },
+    getTile: (state, payload) => {
+      state[payload.payload] = null;
+    },
   },
 });
 
-export const { shuffleTile } = tileSlice.actions;
+export const { shuffleTile, getTile } = tileSlice.actions;
 
 export default tileSlice.reducer;

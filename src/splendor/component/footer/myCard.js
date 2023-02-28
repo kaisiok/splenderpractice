@@ -6,8 +6,13 @@ const MyCardWrap = styled.div`
   height: 50%;
 `;
 
-function MyCard() {
-  return <MyCardWrap>MyCard</MyCardWrap>;
+function MyCard({ cardType, number }) {
+  return (
+    <MyCardWrap>
+      <div>{cardType}</div>
+      <div>{number}</div>
+    </MyCardWrap>
+  );
 }
 
 export default MyCard;

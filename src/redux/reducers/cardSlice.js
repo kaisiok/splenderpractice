@@ -27,9 +27,26 @@ export const cardSlice = createSlice({
         obj.cardOnBoard[action.payload].push(newCard);
       }
     },
+    buyCard: (obj, payload) => {
+      const cardId = payload.payload.slice(0, -1);
+      const cardTier = "tier" + cardId[0];
+      const cardIdx = payload.payload.slice(-1);
+
+      let newCard = obj.cardOnDeck[cardTier].pop();
+      obj.cardOnBoard[cardTier][cardIdx] = newCard;
+    },
+    bringCard: (obj, payload) => {
+      const cardId = payload.payload.slice(0, -1);
+      const cardTier = "tier" + cardId[0];
+      const cardIdx = payload.payload.slice(-1);
+
+      let newCard = obj.cardOnDeck[cardTier].pop();
+      obj.cardOnBoard[cardTier][cardIdx] = newCard;
+    },
   },
 });
 
-export const { shuffleCard, openNewCard } = cardSlice.actions;
+export const { shuffleCard, openNewCard, buyCard, bringCard } =
+  cardSlice.actions;
 
 export default cardSlice.reducer;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useRef } from "react";
 
 const CardWrap = styled.div`
   background-color: lime;
@@ -7,19 +8,26 @@ const CardWrap = styled.div`
   height: 45%;
 `;
 
-function Card({ tier, score, cost, type }) {
+function Card({ tier, score, cost, type, id, idx }) {
+  const cardDragRef = useRef(null);
+  const handleDragStart = (event) => {
+    event.dataTransfer.setData("text/plain", event.target.id + idx);
+  };
+
   return (
-    <CardWrap>
+    <CardWrap draggable id={id} onDragStart={handleDragStart} ref={cardDragRef}>
       <div>tier:{tier}</div>
       <div> score:{score} </div>
       <div>type:{type}</div>
       <div>
         cost
-        {cost.emerald > 0 ? <div>emerald: {cost.emerald}</div> : null}
-        {cost.diamond > 0 ? <div>diamond: {cost.diamond}</div> : null}
-        {cost.sapphire > 0 ? <div> sapphire: {cost.sapphire}</div> : null}
-        {cost.onyx > 0 ? <div> onyx: {cost.onyx}</div> : null}
-        {cost.ruby > 0 ? <div>ruby: {cost.ruby}</div> : null}
+        {cost.emeraldToken > 0 ? <div>emerald: {cost.emeraldToken}</div> : null}
+        {cost.diamondToken > 0 ? <div>diamond: {cost.diamondToken}</div> : null}
+        {cost.sapphireToken > 0 ? (
+          <div> sapphire: {cost.sapphireToken}</div>
+        ) : null}
+        {cost.onyxToken > 0 ? <div> onyx: {cost.onyxToken}</div> : null}
+        {cost.rubyToken > 0 ? <div>ruby: {cost.rubyToken}</div> : null}
       </div>
     </CardWrap>
   );

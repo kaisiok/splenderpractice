@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useRef } from "react";
 import Card from "./card";
 import CardDeck from "./cardDeck";
 import { useSelector } from "react-redux";
@@ -25,16 +26,22 @@ function Tiers({ tier }) {
     <TiersWrap>
       <CardDeck tier={tier} />
       <CardsWrap>
-        {cardOnBoard.map((el) => {
-          return (
-            <Card
-              key={el.id}
-              tier={el.tier}
-              score={el.score}
-              cost={el.cost}
-              type={el.type}
-            />
-          );
+        {cardOnBoard.map((el, idx) => {
+          if (el) {
+            return (
+              <Card
+                key={el.id}
+                id={el.id}
+                idx={idx}
+                tier={el.tier}
+                score={el.score}
+                cost={el.cost}
+                type={el.type}
+              />
+            );
+          } else {
+            //빈카드 컴포넌트 삽입
+          }
         })}
       </CardsWrap>
     </TiersWrap>

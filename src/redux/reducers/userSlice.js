@@ -13,9 +13,28 @@ export const userSlice = createSlice({
         }
       }
     },
+    buyCardUser: (state, payload) => {
+      const userIdx = Number(payload.payload.user.id.slice(-1)) - 1;
+      const type = payload.payload.selectedCard.type + "Cards";
+
+      state[userIdx].cards[type].push(payload.payload.selectedCard);
+      state[userIdx].score += payload.payload.selectedCard.score;
+    },
+    bringCardUser: (state, payload) => {
+      if (payload.payload.remainGoldToken > 0) {
+        state[payload.payload.user].tokens.goldToken += 1;
+      }
+      state[payload.payload.user].hands.push(payload.payload.selectedCard);
+    },
+    getTileUser: (state, payload) => {
+      const activatedPlayer = payload.payload.activatedPlayer;
+      state[activatedPlayer - 1].score += 3;
+      state[activatedPlayer - 1].tiles.push(payload.payload.tile);
+    },
   },
 });
 
-export const { getTokenUser } = userSlice.actions;
+export const { getTokenUser, buyCardUser, bringCardUser, getTileUser } =
+  userSlice.actions;
 
 export default userSlice.reducer;
