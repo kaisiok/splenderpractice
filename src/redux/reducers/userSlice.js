@@ -16,7 +16,24 @@ export const userSlice = createSlice({
     buyCardUser: (state, payload) => {
       const userIdx = Number(payload.payload.user.id.slice(-1)) - 1;
       const type = payload.payload.selectedCard.type + "Cards";
-
+      let goldTokenNeeds = 0;
+      for (let a in payload.payload.selectedCard.cost) {
+        let typeDiscount = a.slice(0, -5) + "Cards";
+        let discount = payload.payload.user.cards[typeDiscount].length;
+        let cardCost = payload.payload.selectedCard.cost[a];
+        let userTokens = payload.payload.user.tokens[a];
+        if (cardCost > 0) {
+          if (userTokens + discount - cardCost >= 0) {
+            if (discount - cardCost < 0) {
+              state[userIdx].tokens[a] += discount - cardCost;
+            }
+          } else {
+            state[userIdx].tokens[a] = 0;
+            goldTokenNeeds += userTokens + discount - cardCost;
+          }
+        }
+      }
+      state[userIdx].tokens.goldToken += goldTokenNeeds;
       state[userIdx].cards[type].push(payload.payload.selectedCard);
       state[userIdx].score += payload.payload.selectedCard.score;
     },
