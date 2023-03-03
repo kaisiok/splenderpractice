@@ -43,10 +43,13 @@ export const cardSlice = createSlice({
       let newCard = obj.cardOnDeck[cardTier].pop();
       obj.cardOnBoard[cardTier][cardIdx] = newCard;
     },
+    bringDeck: (obj, payload) => {
+      obj.cardOnDeck[payload.payload].pop();
+    },
   },
 });
 
-export const { shuffleCard, openNewCard, buyCard, bringCard } =
+export const { shuffleCard, openNewCard, buyCard, bringCard, bringDeck } =
   cardSlice.actions;
 
 export default cardSlice.reducer;

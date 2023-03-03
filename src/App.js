@@ -4,14 +4,12 @@ import Board from "./splendor/component/body/board";
 import MyBoard from "./splendor/component/footer/myBoard";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { shuffleCard } from "./redux/reducers/cardSlice";
 import { shuffleTile } from "./redux/reducers/tileSlice";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(shuffleCard());
     dispatch(shuffleTile());
   }, []);
 

@@ -6,9 +6,9 @@ const MyTokenWrap = styled.div`
   width: 15%;
 `;
 
-function MyToken({ type, number }) {
+function MyToken({ type, number, handleClick }) {
   return (
-    <MyTokenWrap>
+    <MyTokenWrap onClick={handleClick}>
       <div>{type}</div>
       <div>{number}</div>
     </MyTokenWrap>

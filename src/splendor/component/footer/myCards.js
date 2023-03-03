@@ -47,19 +47,22 @@ function MyCards() {
   const handleDrop = (event) => {
     event.preventDefault();
     const data = event.dataTransfer.getData("text/plain");
-    const cardTier = "tier" + data[0];
-    const cardIdx = data.slice(-1);
-    const selectedCard = cardOnBoard[cardTier][cardIdx];
-
-    const payload = { user: activatedPlayer, selectedCard };
-
-    if (tokenCheck(userTokens, userCards, selectedCard.cost)) {
-      dispatch(buyCardUser(payload));
-      dispatch(buyCard(data));
-      dispatch(buyCardInTurn(payload));
-      dispatch(buyCardToken(payload));
+    if (data.slice(0, 8) === "deckDrag") {
+      alert("덱에 있는 카드는 핸드로만 가져올 수 있습니다.");
     } else {
-      alert("토큰이 모자랍니다.");
+      const cardTier = "tier" + data[0];
+      const cardIdx = data.slice(-1);
+      const selectedCard = cardOnBoard[cardTier][cardIdx];
+      const payload = { user: activatedPlayer, selectedCard };
+
+      if (tokenCheck(userTokens, userCards, selectedCard.cost)) {
+        dispatch(buyCardUser(payload));
+        dispatch(buyCard(data));
+        dispatch(buyCardInTurn(payload));
+        dispatch(buyCardToken(payload));
+      } else {
+        alert("토큰이 모자랍니다.");
+      }
     }
   };
 

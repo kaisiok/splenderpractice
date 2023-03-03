@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 
 const CardWrap = styled.div`
   background-color: lime;
@@ -9,13 +10,19 @@ const CardWrap = styled.div`
 `;
 
 function Card({ tier, score, cost, type, id, idx }) {
+  const isDraggable = useSelector((state) => state.turn.canPlay);
   const cardDragRef = useRef(null);
   const handleDragStart = (event) => {
     event.dataTransfer.setData("text/plain", event.target.id + idx);
   };
 
   return (
-    <CardWrap draggable id={id} onDragStart={handleDragStart} ref={cardDragRef}>
+    <CardWrap
+      draggable={isDraggable}
+      id={id}
+      onDragStart={handleDragStart}
+      ref={cardDragRef}
+    >
       <div>tier:{tier}</div>
       <div> score:{score} </div>
       <div>type:{type}</div>
