@@ -38,10 +38,20 @@ export const tokenSlice = createSlice({
       }
       state.goldToken -= goldTokenNeeds;
     },
+    getBackToken: (state, payload) => {
+      for (let a in payload.payload) {
+        state[a] += payload.payload[a];
+      }
+    },
   },
 });
 
-export const { getToken, cancelGetToken, getGoldToken, buyCardToken } =
-  tokenSlice.actions;
+export const {
+  getToken,
+  cancelGetToken,
+  getGoldToken,
+  buyCardToken,
+  getBackToken,
+} = tokenSlice.actions;
 
 export default tokenSlice.reducer;

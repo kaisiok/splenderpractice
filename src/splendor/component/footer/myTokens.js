@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import MyToken from "./myToken";
 import UserTokenModal from "./userTokenMadal";
@@ -18,16 +18,26 @@ function MyTokens() {
     (state) => state.user[state.turn.activatedPlayer - 1]
   );
 
-  const handleClick = () => {
-    setOpenModal(true);
-  };
+  useEffect(() => {
+    checkToken10();
+  }, [activatedPlayer.tokens]);
+
+  function checkToken10() {
+    let userSum = 0;
+    for (let a in activatedPlayer.tokens) {
+      userSum += activatedPlayer.tokens[a];
+    }
+    if (userSum > 10) {
+      setOpenModal(true);
+    }
+  }
 
   const handleClose = () => {
     setOpenModal(false);
   };
 
   return (
-    <MyTokensWrap onClick={handleClick}>
+    <MyTokensWrap>
       {Object.keys(activatedPlayer.tokens).map((el) => {
         return (
           <MyToken key={el} type={el} number={activatedPlayer.tokens[el]} />

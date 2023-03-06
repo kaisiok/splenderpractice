@@ -48,10 +48,20 @@ export const userSlice = createSlice({
       state[activatedPlayer - 1].score += 3;
       state[activatedPlayer - 1].tiles.push(payload.payload.tile);
     },
+    getBackTokenUser: (state, payload) => {
+      const userIdx = payload.payload.userIdx;
+      const token = payload.payload.selectedToken;
+      state[userIdx].tokens[token] -= 1;
+    },
   },
 });
 
-export const { getTokenUser, buyCardUser, bringCardUser, getTileUser } =
-  userSlice.actions;
+export const {
+  getTokenUser,
+  buyCardUser,
+  bringCardUser,
+  getTileUser,
+  getBackTokenUser,
+} = userSlice.actions;
 
 export default userSlice.reducer;

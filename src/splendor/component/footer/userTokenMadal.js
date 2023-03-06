@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import { createPortal } from "react-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 import MyToken from "./myToken";
+import {
+  getBackTokenUser,
+  getTokenUser,
+} from "../../../redux/reducers/userSlice";
+import { getBackToken } from "../../../redux/reducers/tokenSlice";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -27,17 +33,6 @@ const ModalContent = styled.div`
   text-align: center;
 `;
 
-const ModalClose = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  color: black;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-`;
 const MyTokensWrap = styled.div`
   background-color: skyblue;
   width: 100%;
@@ -51,19 +46,81 @@ function UserTokenModal({ open, onClose }) {
   const activatedPlayer = useSelector(
     (state) => state.user[state.turn.activatedPlayer - 1]
   );
-  function hadleModalClose() {
+  const userIdx = useSelector((state) => state.turn.activatedPlayer - 1);
+  const [selectedTokens, setSelectedTokens] = useState({
+    emeraldToken: 0,
+    diamondToken: 0,
+    sapphireToken: 0,
+    onyxToken: 0,
+    rubyToken: 0,
+    goldToken: 0,
+  });
+  const [cancelButtonDisabled, setCancelButtonDisabled] = useState(true);
+
+  const dispatch = useDispatch();
+
+  function checkToken10() {
+    let userSum = 0;
+    for (let a in activatedPlayer.tokens) {
+      userSum += activatedPlayer.tokens[a];
+    }
+    return userSum > 10;
+  }
+
+  function selectToken(el) {
+    let newTokens = Object.assign({}, selectedTokens);
+    if (activatedPlayer.tokens[el] > 0) {
+      newTokens[el] += 1;
+      dispatch(getBackTokenUser({ userIdx, selectedToken: el }));
+      setCancelButtonDisabled(false);
+      setSelectedTokens(newTokens);
+    }
+  }
+  function handleConfirm() {
+    dispatch(getBackToken(selectedTokens));
+    setSelectedTokens({
+      emeraldToken: 0,
+      diamondToken: 0,
+      sapphireToken: 0,
+      onyxToken: 0,
+      rubyToken: 0,
+      goldToken: 0,
+    });
+    setCancelButtonDisabled(true);
     onClose();
+  }
+  function handleCancle() {
+    dispatch(getTokenUser({ id: userIdx + 1, tokens: selectedTokens }));
+    setSelectedTokens({
+      emeraldToken: 0,
+      diamondToken: 0,
+      sapphireToken: 0,
+      onyxToken: 0,
+      rubyToken: 0,
+      goldToken: 0,
+    });
+    setCancelButtonDisabled(true);
   }
 
   if (!open) return null;
   return createPortal(
     <div onClick={(e) => e.stopPropagation()}>
-      <ModalOverlay onClick={hadleModalClose}>
-        <ModalContent onClick={(e) => e.stopPropagation()}>
-          <ModalClose onClick={hadleModalClose}>&times;</ModalClose>{" "}
+      <ModalOverlay>
+        <ModalContent>
           <h1>토큰이 10개 이하가 될 때 까지 버릴 토큰을 선택하세요</h1>
           <div>
             <h2>선택한 토큰</h2>
+            <div>
+              {Object.keys(selectedTokens).map((el) => {
+                if (selectedTokens[el] > 0) {
+                  return (
+                    <div key={el}>
+                      {el}:{selectedTokens[el]}
+                    </div>
+                  );
+                }
+              })}
+            </div>
           </div>
           <MyTokensWrap>
             {Object.keys(activatedPlayer.tokens).map((el) => {
@@ -73,12 +130,18 @@ function UserTokenModal({ open, onClose }) {
                   type={el}
                   number={activatedPlayer.tokens[el]}
                   handleClick={() => {
-                    console.log(el);
+                    selectToken(el);
                   }}
                 />
               );
             })}
           </MyTokensWrap>
+          <button disabled={cancelButtonDisabled} onClick={handleCancle}>
+            되돌리기
+          </button>
+          <button disabled={checkToken10()} onClick={handleConfirm}>
+            확인
+          </button>
         </ModalContent>
       </ModalOverlay>
     </div>,
