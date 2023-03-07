@@ -113,6 +113,9 @@ export const turnSlice = createSlice({
       state.getTile.status = false;
       state.getTile.tileInfo = {};
     },
+    gameEndTurn: (state) => {
+      state.gameEnd = true;
+    },
   },
 });
 
@@ -124,6 +127,7 @@ export const {
   getTileInTurn,
   notGetTileInTurn,
   undoTurn,
+  gameEndTurn,
 } = turnSlice.actions;
 
 export default turnSlice.reducer;
