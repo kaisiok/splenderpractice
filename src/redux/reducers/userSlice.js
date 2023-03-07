@@ -53,6 +53,12 @@ export const userSlice = createSlice({
       const token = payload.payload.selectedToken;
       state[userIdx].tokens[token] -= 1;
     },
+    undoTokenUser: (state, payload) => {
+      const userIdx = payload.payload.activatedPlayer - 1;
+      for (let a in payload.payload.tokens) {
+        state[userIdx].tokens[a] -= payload.payload.tokens[a];
+      }
+    },
   },
 });
 
@@ -62,6 +68,7 @@ export const {
   bringCardUser,
   getTileUser,
   getBackTokenUser,
+  undoTokenUser,
 } = userSlice.actions;
 
 export default userSlice.reducer;

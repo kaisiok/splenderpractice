@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const turnState = {
   activatedPlayer: 1,
   canPlay: true,
+  gameEnd: false,
   action: "",
   tokens: {
     emeraldToken: 0,
@@ -42,6 +43,26 @@ export const turnSlice = createSlice({
         state.activatedPlayer = 1;
       }
       state.canPlay = true;
+      state.action = "";
+      state.tokens = {
+        emeraldToken: 0,
+        diamondToken: 0,
+        sapphireToken: 0,
+        onyxToken: 0,
+        rubyToken: 0,
+      };
+      state.buyCard.id = "";
+      state.buyCard.cost = {
+        emeraldToken: 0,
+        diamondToken: 0,
+        sapphireToken: 0,
+        onyxToken: 0,
+        rubyToken: 0,
+      };
+      state.bringCard.id = "";
+      state.bringCard.goldToken = 0;
+      state.getTile.status = false;
+      state.getTile.tileInfo = {};
     },
     getTokenInTurn: (state, payload) => {
       state.canPlay = false;
@@ -69,6 +90,29 @@ export const turnSlice = createSlice({
     notGetTileInTurn: (state) => {
       state.getTile.status = false;
     },
+    undoTurn: (state) => {
+      state.canPlay = true;
+      state.action = "";
+      state.tokens = {
+        emeraldToken: 0,
+        diamondToken: 0,
+        sapphireToken: 0,
+        onyxToken: 0,
+        rubyToken: 0,
+      };
+      state.buyCard.id = "";
+      state.buyCard.cost = {
+        emeraldToken: 0,
+        diamondToken: 0,
+        sapphireToken: 0,
+        onyxToken: 0,
+        rubyToken: 0,
+      };
+      state.bringCard.id = "";
+      state.bringCard.goldToken = 0;
+      state.getTile.status = false;
+      state.getTile.tileInfo = {};
+    },
   },
 });
 
@@ -79,6 +123,7 @@ export const {
   bringCardInTurn,
   getTileInTurn,
   notGetTileInTurn,
+  undoTurn,
 } = turnSlice.actions;
 
 export default turnSlice.reducer;
