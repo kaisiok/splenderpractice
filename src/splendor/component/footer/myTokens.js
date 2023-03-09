@@ -6,8 +6,6 @@ import UserTokenModal from "./userTokenMadal";
 
 const MyTokensWrap = styled.div`
   background-color: skyblue;
-  width: 90%;
-  height: 40%;
   display: flex;
   justify-content: space-around;
   align-items: center;

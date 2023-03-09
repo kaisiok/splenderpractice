@@ -16,7 +16,7 @@ const MyBoardWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30vh;
+  height: 20em;
 `;
 const DoUndoButten = styled.button`
   width: 200px;
