@@ -74,6 +74,7 @@ function MyCards() {
             key={el}
             cardType={el}
             number={activatedPlayer.cards[el].length}
+            size={{ width: 8, height: 12, border: 0.5, font: 3 }}
           />
         );
       })}

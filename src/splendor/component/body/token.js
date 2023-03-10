@@ -11,8 +11,8 @@ const TokenWrap = styled.div`
   height: 10%;
   position: relative;
   > img:nth-child(2) {
-    width: 90px;
-    height: 90px;
+    width: 6rem;
+    height: 6rem;
     position: relative;
     z-index: 1;
   }
@@ -52,7 +52,7 @@ function Token({ type, number }) {
   return (
     <TokenWrap>
       <div>{number}</div>
-      <img src={backgroundImg} />
+      <img src={backgroundImg} alt="token_img" />
     </TokenWrap>
   );
 }

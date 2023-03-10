@@ -7,7 +7,7 @@ const SummaryWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10em;
+  height: 20%;
 `;
 
 function Summary() {

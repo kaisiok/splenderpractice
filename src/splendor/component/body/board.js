@@ -5,7 +5,7 @@ import Cards from "./cards";
 
 const BoardWrap = styled.div`
   background-color: green;
-  height: 35em;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;

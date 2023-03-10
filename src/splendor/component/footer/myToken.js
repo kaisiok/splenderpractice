@@ -10,8 +10,8 @@ const MyTokenWrap = styled.div`
   position: relative;
   table-layout: fixed;
   > img:nth-child(2) {
-    width: 90px;
-    height: 90px;
+    width: 6rem;
+    height: 6rem;
     position: relative;
     z-index: 1;
     ${({ imgType }) => {
