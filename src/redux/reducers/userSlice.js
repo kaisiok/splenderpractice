@@ -59,6 +59,11 @@ export const userSlice = createSlice({
         state[userIdx].tokens[a] -= payload.payload.tokens[a];
       }
     },
+    buyCardInHandUser: (state, payload) => {
+      const userIdx = Number(payload.payload.user.id.slice(-1)) - 1;
+      const cardIdx = payload.payload.idx;
+      state[userIdx].hands.splice(cardIdx, 1);
+    },
   },
 });
 
@@ -69,6 +74,7 @@ export const {
   getTileUser,
   getBackTokenUser,
   undoTokenUser,
+  buyCardInHandUser,
 } = userSlice.actions;
 
 export default userSlice.reducer;

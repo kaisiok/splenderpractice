@@ -20,10 +20,11 @@ const CardsWrap = styled.div`
 
 function Tiers({ tier }) {
   const cardOnBoard = useSelector((state) => state.card.cardOnBoard[tier]);
+  const leftCard = useSelector((state) => state.card.cardOnDeck[tier].length);
 
   return (
     <TiersWrap>
-      <CardDeck tier={tier} />
+      <CardDeck tier={tier} number={leftCard} />
       <CardsWrap>
         {cardOnBoard.map((el, idx) => {
           if (el) {
@@ -35,6 +36,7 @@ function Tiers({ tier }) {
                 score={el.score}
                 cost={el.cost}
                 type={el.type}
+                location={"board"}
               />
             );
           } else {

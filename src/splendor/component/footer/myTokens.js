@@ -38,7 +38,12 @@ function MyTokens() {
     <MyTokensWrap>
       {Object.keys(activatedPlayer.tokens).map((el) => {
         return (
-          <MyToken key={el} type={el} number={activatedPlayer.tokens[el]} />
+          <MyToken
+            key={el}
+            type={el}
+            number={activatedPlayer.tokens[el]}
+            disabled={false}
+          />
         );
       })}
       <UserTokenModal open={openModal} onClose={handleClose} />

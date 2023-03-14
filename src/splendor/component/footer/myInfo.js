@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import MyTiles from "./myTiles";
 import MyTokens from "./myTokens";
+import { useSelector } from "react-redux";
 
 const MyInfoWrap = styled.div`
   background-color: whitesmoke;
@@ -13,9 +14,12 @@ const MyInfoWrap = styled.div`
 `;
 
 function MyInfo() {
+  const userSocer = useSelector(
+    (state) => state.user[state.turn.activatedPlayer - 1].score
+  );
   return (
     <MyInfoWrap>
-      score:0
+      <div>score:{userSocer}</div>
       <MyTiles />
       <MyTokens />
     </MyInfoWrap>

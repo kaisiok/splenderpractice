@@ -109,7 +109,10 @@ function MyBoard() {
       <MyCards />
       <MyHand />
       <MyInfo />
-      <DoUndoButten onClick={handleNextTurn} disabled={turnInfo.canPlay}>
+      <DoUndoButten
+        onClick={handleNextTurn}
+        // disabled={turnInfo.canPlay}
+      >
         next
       </DoUndoButten>
     </MyBoardWrap>

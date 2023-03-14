@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import Token from "./token";
+import MyToken from "../footer/myToken";
 import TokenModal from "./tokenModal";
 
 const TokensWrap = styled.div`
@@ -32,12 +32,24 @@ function Tokens() {
 
   return (
     <TokensWrap onClick={handleClick}>
-      <Token type={"emerald"} number={tokens.emeraldToken} />
-      <Token type={"diamond"} number={tokens.diamondToken} />
-      <Token type={"sapphire"} number={tokens.sapphireToken} />
-      <Token type={"onyx"} number={tokens.onyxToken} />
-      <Token type={"ruby"} number={tokens.rubyToken} />
-      <Token type={"gold"} number={tokens.goldToken} />{" "}
+      <MyToken
+        type={"emeraldToken"}
+        number={tokens.emeraldToken}
+        disabled={false}
+      />
+      <MyToken
+        type={"diamondToken"}
+        number={tokens.diamondToken}
+        disabled={false}
+      />
+      <MyToken
+        type={"sapphireToken"}
+        number={tokens.sapphireToken}
+        disabled={false}
+      />
+      <MyToken type={"onyxToken"} number={tokens.onyxToken} disabled={false} />
+      <MyToken type={"rubyToken"} number={tokens.rubyToken} disabled={false} />
+      <MyToken type={"goldToken"} number={tokens.goldToken} disabled={false} />
       <TokenModal open={openModal} onClose={handleClose} />
     </TokensWrap>
   );

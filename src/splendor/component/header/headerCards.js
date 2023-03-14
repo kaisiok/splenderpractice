@@ -9,7 +9,7 @@ const CardsWrap = styled.div`
   justify-content: space-around;
 `;
 
-function Cards({ cards }) {
+function HeaderCards({ cards }) {
   return (
     <CardsWrap>
       {Object.keys(cards).map((el) => {
@@ -26,4 +26,4 @@ function Cards({ cards }) {
   );
 }
 
-export default Cards;
+export default HeaderCards;

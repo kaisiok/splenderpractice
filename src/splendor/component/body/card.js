@@ -41,11 +41,11 @@ const JewelCostWrap = styled.div`
   }
 `;
 
-function Card({ score, cost, type, id, idx }) {
+function Card({ score, cost, type, id, idx, location }) {
   const isDraggable = useSelector((state) => state.turn.canPlay);
   const cardDragRef = useRef(null);
   const handleDragStart = (event) => {
-    event.dataTransfer.setData("text/plain", event.target.id + idx);
+    event.dataTransfer.setData("text/plain", location + event.target.id + idx);
   };
 
   const borderColor = (() => {

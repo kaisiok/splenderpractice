@@ -34,6 +34,13 @@ const TilesBottomWrap = styled.div`
   justify-content: space-around;
 `;
 
+const DummyTile = styled.div`
+  border-radius: 10%;
+  height: 8rem;
+  width: 8rem;
+  border: dashed;
+`;
+
 function Tiles() {
   const tileOnBoard = useSelector((state) => state.tile);
   const tileCheck = useSelector((state) => state.turn.canPlay);
@@ -81,14 +88,18 @@ function Tiles() {
             score={tileOnBoard[0].score}
             cost={tileOnBoard[0].cost}
           />
-        ) : null}
+        ) : (
+          <DummyTile />
+        )}
         {tileOnBoard[1] ? (
           <Tile
             key={tileOnBoard[1].id}
             score={tileOnBoard[1].score}
             cost={tileOnBoard[1].cost}
           />
-        ) : null}
+        ) : (
+          <DummyTile />
+        )}
       </TilesTopWrap>
       <TilesMiddleWrap>
         {tileOnBoard[2] ? (
@@ -97,7 +108,9 @@ function Tiles() {
             score={tileOnBoard[2].score}
             cost={tileOnBoard[2].cost}
           />
-        ) : null}
+        ) : (
+          <DummyTile />
+        )}
       </TilesMiddleWrap>
       <TilesBottomWrap>
         {tileOnBoard[3] ? (
@@ -106,14 +119,18 @@ function Tiles() {
             score={tileOnBoard[3].score}
             cost={tileOnBoard[3].cost}
           />
-        ) : null}
+        ) : (
+          <DummyTile />
+        )}
         {tileOnBoard[4] ? (
           <Tile
             key={tileOnBoard[4].id}
             score={tileOnBoard[4].score}
             cost={tileOnBoard[4].cost}
           />
-        ) : null}
+        ) : (
+          <DummyTile />
+        )}
       </TilesBottomWrap>
     </TilesWrap>
   );

@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { getTokenInTurn } from "../../../redux/reducers/turnSlice";
 import { getToken, cancelGetToken } from "../../../redux/reducers/tokenSlice";
 import { getTokenUser } from "../../../redux/reducers/userSlice";
+import MyToken from "../footer/myToken";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -40,6 +41,10 @@ const ModalClose = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+`;
+const TokenContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 function TokenModal({ open, onClose }) {
@@ -120,7 +125,6 @@ function TokenModal({ open, onClose }) {
       onClose();
     }
   }
-  //취소시 되돌리기, 확정시 유저 정보에 저장하기 ,넥스트 누를시 버튼 다시 활성화(selectedToken)
 
   if (!open) return null;
   return createPortal(
@@ -129,30 +133,39 @@ function TokenModal({ open, onClose }) {
         <ModalContent onClick={(e) => e.stopPropagation()}>
           <ModalClose onClick={hadleModalClose}>&times;</ModalClose>{" "}
           <h1>토큰을 고른 후 확인버튼을 눌러주세요</h1>
-          {Object.keys(tokenInModal).map((el) => {
-            return (
-              <div key={el}>
-                {el}:{tokenInModal[el]}
-                <button
-                  onClick={() => {
-                    tokenSelect(el);
-                  }}
-                  disabled={buttonDisabled(el)}
-                >
-                  +
-                </button>
-              </div>
-            );
-          })}
+          <TokenContainer>
+            {Object.keys(tokenInModal).map((el) => {
+              if (el !== "goldToken") {
+                return (
+                  <MyToken
+                    key={el + "tokenInModal"}
+                    number={tokenInModal[el]}
+                    handleClick={() => {
+                      tokenSelect(el);
+                    }}
+                    disabled={buttonDisabled(el)}
+                    type={el}
+                  />
+                );
+              } else {
+                return null;
+              }
+            })}
+          </TokenContainer>
           <div>
             <h2>선택한 토큰</h2>
-            {Object.keys(selectedToken).map((el) => {
-              return (
-                <div key={el}>
-                  {el}:{selectedToken[el]}
-                </div>
-              );
-            })}
+            <TokenContainer>
+              {Object.keys(selectedToken).map((el) => {
+                return (
+                  <MyToken
+                    key={el + "selectedToken"}
+                    number={selectedToken[el]}
+                    type={el}
+                    disabled={false}
+                  />
+                );
+              })}
+            </TokenContainer>
           </div>
           <div onClick={onClose}>
             <button onClick={hadleCancel}>취소</button>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import HandedCard from "./handedCard";
+import Card from "../body/card";
 import { bringCardUser } from "../../../redux/reducers/userSlice";
 import { bringCard, bringDeck } from "../../../redux/reducers/cardSlice";
 import { bringCardInTurn } from "../../../redux/reducers/turnSlice";
@@ -34,7 +34,7 @@ function MyHand() {
   const handleDrop = (event) => {
     event.preventDefault();
     if (handedCards.length <= 2) {
-      const data = event.dataTransfer.getData("text/plain");
+      let data = event.dataTransfer.getData("text/plain");
       if (data.slice(0, 8) === "deckDrag") {
         const tier = data.slice(-5);
         const topCard = cardOnDeck[tier][cardOnDeck[tier].length - 1];
@@ -50,7 +50,8 @@ function MyHand() {
         if (remainGoldToken > 0) {
           dispatch(getGoldToken());
         }
-      } else {
+      } else if (data.slice(0, 5) === "board") {
+        data = data.slice(5);
         const cardTier = "tier" + data[0];
         const cardIdx = data.slice(-1);
         const selectedCard = cardOnBoard[cardTier][cardIdx];
@@ -66,6 +67,10 @@ function MyHand() {
         if (remainGoldToken > 0) {
           dispatch(getGoldToken());
         }
+      } else if (data.slice(0, 4) === "hand") {
+        //손에서 손으로 옮기는 상황 아무일도 일어나지 않는다
+      } else {
+        alert("에러");
       }
     } else {
       alert("최대 3장까지 손에 들 수 있습니다.");
@@ -74,14 +79,15 @@ function MyHand() {
 
   return (
     <MyHandWrap onDragOver={handleDragOver} onDrop={handleDrop}>
-      {handedCards.map((el) => (
-        <HandedCard
+      {handedCards.map((el, idx) => (
+        <Card
           key={el.id}
           id={el.id}
-          tier={el.tier}
+          idx={idx}
           score={el.score}
           cost={el.cost}
           type={el.type}
+          location={"hand"}
         />
       ))}
     </MyHandWrap>

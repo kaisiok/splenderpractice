@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import MyTile from "./myTile";
+import Tile from "../body/tile";
 
 const MyTilesWrap = styled.div`
   background-color: beige;
@@ -15,10 +15,11 @@ function MyTiles() {
   const userTiles = useSelector(
     (state) => state.user[activatedPlayer - 1].tiles
   );
+
   return (
     <MyTilesWrap>
       {userTiles.map((el) => {
-        return <MyTile key={el.id} info={el} />;
+        return <Tile key={el.id} score={el.score} cost={el.cost} />;
       })}
     </MyTilesWrap>
   );

@@ -4,15 +4,34 @@ import { useSelector, useDispatch } from "react-redux";
 import { openNewCard, shuffleCard } from "../../../redux/reducers/cardSlice";
 
 const CardDeckWrap = styled.div`
-  background-color: darkgrey;
+  background-color: ${(props) => props.backgroundColor};
+  border: 0.2em solid white;
+  border-radius: 8%;
+  height: 20%;
+  width: 18%;
+  position: relative;
+  & > .card_tier {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
-function CardDeck({ tier }) {
+function CardDeck({ tier, number }) {
   const dispatch = useDispatch();
   const DeckDragRef = useRef(null);
-  const leftCard = useSelector((state) => state.card.cardOnDeck[tier].length);
   const cardOnBoard = useSelector((state) => state.card.cardOnBoard[tier]);
   const isDraggable = useSelector((state) => state.turn.canPlay);
+  const backgroundColor = (() => {
+    if (tier === "tier1") {
+      return "#0070DD";
+    } else if (tier === "tier2") {
+      return "#A335EE";
+    } else {
+      return "#FF8000";
+    }
+  })();
 
   useEffect(() => {
     if (cardOnBoard.length === 0) {
@@ -27,11 +46,15 @@ function CardDeck({ tier }) {
 
   return (
     <CardDeckWrap
-      draggable={isDraggable && cardOnBoard.length > 0}
+      backgroundColor={backgroundColor}
+      draggable={isDraggable && number > 0}
       ref={DeckDragRef}
       onDragStart={handleDragStart}
     >
-      {leftCard} card left
+      {number > 0 ? <div>{number}</div> : null}
+      <div className="card_tier">
+        {tier === "tier1" ? "Ⅰ" : tier === "tier2" ? "Ⅱ" : "Ⅲ"}
+      </div>
     </CardDeckWrap>
   );
 }

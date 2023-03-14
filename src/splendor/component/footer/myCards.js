@@ -2,7 +2,10 @@ import styled from "styled-components";
 import MyCard from "./myCard";
 import { useSelector, useDispatch } from "react-redux";
 import { buyCard } from "../../../redux/reducers/cardSlice";
-import { buyCardUser } from "../../../redux/reducers/userSlice";
+import {
+  buyCardUser,
+  buyCardInHandUser,
+} from "../../../redux/reducers/userSlice";
 import { buyCardInTurn } from "../../../redux/reducers/turnSlice";
 import { buyCardToken } from "../../../redux/reducers/tokenSlice";
 
@@ -46,10 +49,11 @@ function MyCards() {
 
   const handleDrop = (event) => {
     event.preventDefault();
-    const data = event.dataTransfer.getData("text/plain");
+    let data = event.dataTransfer.getData("text/plain");
     if (data.slice(0, 8) === "deckDrag") {
       alert("덱에 있는 카드는 핸드로만 가져올 수 있습니다.");
-    } else {
+    } else if (data.slice(0, 5) === "board") {
+      data = data.slice(5);
       const cardTier = "tier" + data[0];
       const cardIdx = data.slice(-1);
       const selectedCard = cardOnBoard[cardTier][cardIdx];
@@ -63,6 +67,22 @@ function MyCards() {
       } else {
         alert("토큰이 모자랍니다.");
       }
+    } else if (data.slice(0, 4) === "hand") {
+      data = data.slice(4);
+      const cardIdx = data.slice(-1);
+      const selectedCard = activatedPlayer.hands[cardIdx];
+      const payload = { user: activatedPlayer, selectedCard };
+
+      if (tokenCheck(userTokens, userCards, selectedCard.cost)) {
+        dispatch(buyCardUser(payload));
+        dispatch(buyCardInHandUser({ user: activatedPlayer, idx: cardIdx }));
+        dispatch(buyCardInTurn(payload));
+        dispatch(buyCardToken(payload));
+      } else {
+        alert("토큰이 모자랍니다.");
+      }
+    } else {
+      alert("에러");
     }
   };
 
