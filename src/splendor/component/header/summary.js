@@ -4,10 +4,11 @@ import User from "./user";
 
 const SummaryWrap = styled.div`
   background-color: red;
+  height: 100%;
+  width: 18.75rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20%;
+  flex-direction: column;
+  justify-content: space-around;
 `;
 
 function Summary() {

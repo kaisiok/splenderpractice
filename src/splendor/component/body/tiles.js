@@ -81,57 +81,51 @@ function Tiles() {
 
   return (
     <TilesWrap>
-      <TilesTopWrap>
-        {tileOnBoard[0] ? (
-          <Tile
-            key={tileOnBoard[0].id}
-            score={tileOnBoard[0].score}
-            cost={tileOnBoard[0].cost}
-          />
-        ) : (
-          <DummyTile />
-        )}
-        {tileOnBoard[1] ? (
-          <Tile
-            key={tileOnBoard[1].id}
-            score={tileOnBoard[1].score}
-            cost={tileOnBoard[1].cost}
-          />
-        ) : (
-          <DummyTile />
-        )}
-      </TilesTopWrap>
-      <TilesMiddleWrap>
-        {tileOnBoard[2] ? (
-          <Tile
-            key={tileOnBoard[2].id}
-            score={tileOnBoard[2].score}
-            cost={tileOnBoard[2].cost}
-          />
-        ) : (
-          <DummyTile />
-        )}
-      </TilesMiddleWrap>
-      <TilesBottomWrap>
-        {tileOnBoard[3] ? (
-          <Tile
-            key={tileOnBoard[3].id}
-            score={tileOnBoard[3].score}
-            cost={tileOnBoard[3].cost}
-          />
-        ) : (
-          <DummyTile />
-        )}
-        {tileOnBoard[4] ? (
-          <Tile
-            key={tileOnBoard[4].id}
-            score={tileOnBoard[4].score}
-            cost={tileOnBoard[4].cost}
-          />
-        ) : (
-          <DummyTile />
-        )}
-      </TilesBottomWrap>
+      {tileOnBoard[0] ? (
+        <Tile
+          key={tileOnBoard[0].id}
+          score={tileOnBoard[0].score}
+          cost={tileOnBoard[0].cost}
+        />
+      ) : (
+        <DummyTile />
+      )}
+      {tileOnBoard[1] ? (
+        <Tile
+          key={tileOnBoard[1].id}
+          score={tileOnBoard[1].score}
+          cost={tileOnBoard[1].cost}
+        />
+      ) : (
+        <DummyTile />
+      )}
+      {tileOnBoard[2] ? (
+        <Tile
+          key={tileOnBoard[2].id}
+          score={tileOnBoard[2].score}
+          cost={tileOnBoard[2].cost}
+        />
+      ) : (
+        <DummyTile />
+      )}
+      {tileOnBoard[3] ? (
+        <Tile
+          key={tileOnBoard[3].id}
+          score={tileOnBoard[3].score}
+          cost={tileOnBoard[3].cost}
+        />
+      ) : (
+        <DummyTile />
+      )}
+      {tileOnBoard[4] ? (
+        <Tile
+          key={tileOnBoard[4].id}
+          score={tileOnBoard[4].score}
+          cost={tileOnBoard[4].cost}
+        />
+      ) : (
+        <DummyTile />
+      )}
     </TilesWrap>
   );
 }

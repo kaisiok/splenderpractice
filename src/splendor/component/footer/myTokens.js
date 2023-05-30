@@ -42,7 +42,7 @@ function MyTokens() {
             key={el}
             type={el}
             number={activatedPlayer.tokens[el]}
-            disabled={false}
+            disabled={activatedPlayer.tokens[el] === 0}
           />
         );
       })}

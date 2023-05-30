@@ -6,37 +6,52 @@ import sapphireImg from "../../img/sapphire.png";
 import diamondImg from "../../img/diamond.png";
 import emeraldImg from "../../img/emerald.png";
 import onyxImg from "../../img/onyx.png";
+import CardCost from "./cardCost";
 
 const CardWrap = styled.div`
   box-sizing: border-box;
   background-color: white;
-  border: 0.3em solid ${(props) => props.borderColor};
+  border: 0.3rem solid ${(props) => props.borderColor};
   border-radius: 7%;
-  margin: auto;
-  width: 35%;
-  height: 45%;
+  width: 7rem;
+  height: 9rem;
   position: relative;
+  transform: translate(0, 0);
+`;
+const CardTopWrap = styled.div`
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
   & > #score_in_card {
-    width: 30%;
-    font-size: 2.5rem;
+    /* width: 30%; */
+    margin-left: 0.3rem;
+    right: 3rem;
+    font-size: 2rem;
     color: #d6b534;
     text-shadow: 1px 1px 0 gold, -1px -1px 0 gold, 1px -1px 0 gold,
       -1px 1px 0 gold;
-    transform: translate(0%, 15%);
+    /* transform: translate(0%, 15%); */
   }
   & > #jewel_img {
-    width: 3rem;
-    height: 3rem;
-    transform: translate(60%, -80%);
+    width: 2rem;
+    height: 2rem;
+    /* transform: translate(60%, -80%); */
     -webkit-user-drag: none;
   }
 `;
 
 const JewelCostWrap = styled.div`
   display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  width: 5.5rem;
+  height: 5.5rem;
+
   .cost_jewel_img {
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 100%;
+    height: 50%;
     -webkit-user-drag: none;
   }
 `;
@@ -90,32 +105,16 @@ function Card({ score, cost, type, id, idx, location }) {
       ref={cardDragRef}
       borderColor={borderColor}
     >
-      <div id="score_in_card"> {score} </div>
-      <img id="jewel_img" src={jewelImg} alt="jewel_img" />
+      <CardTopWrap>
+        <div id="score_in_card"> {score} </div>
+        <img id="jewel_img" src={jewelImg} alt="jewel_img" />
+      </CardTopWrap>
+
       <JewelCostWrap>
         {Object.keys(cost).map((el) => {
-          let costImg;
-          if (el === "emeraldToken") {
-            costImg = emeraldImg;
-          } else if (el === "diamondToken") {
-            costImg = diamondImg;
-          } else if (el === "onyxToken") {
-            costImg = onyxImg;
-          } else if (el === "rubyToken") {
-            costImg = rubyImg;
-          } else if (el === "sapphireToken") {
-            costImg = sapphireImg;
-          }
           if (cost[el] > 0) {
             return (
-              <div key={costImg + "div"}>
-                <img
-                  src={costImg}
-                  className="cost_jewel_img"
-                  alt="cost_jewel_img"
-                />
-                <div>{cost[el]}</div>
-              </div>
+              <CardCost key={el + "div"} costType={el} costValue={cost[el]} />
             );
           } else {
             return null;

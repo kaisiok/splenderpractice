@@ -5,8 +5,8 @@ import Hand from "./hand";
 
 const UserWrap = styled.div`
   background-color: ${(props) => (props.active ? "blue" : "gray")};
-  width: 24%;
-  height: 80%;
+  width: 15.625rem;
+  height: 12rem;
   margin: auto;
 `;
 

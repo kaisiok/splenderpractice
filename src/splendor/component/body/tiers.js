@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 
 const TiersWrap = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  height: 30%;
+  float: left;
 `;
 const CardsWrap = styled.div`
   background-color: brown;
@@ -25,25 +26,25 @@ function Tiers({ tier }) {
   return (
     <TiersWrap>
       <CardDeck tier={tier} number={leftCard} />
-      <CardsWrap>
-        {cardOnBoard.map((el, idx) => {
-          if (el) {
-            return (
-              <Card
-                key={el.id}
-                id={el.id}
-                idx={idx}
-                score={el.score}
-                cost={el.cost}
-                type={el.type}
-                location={"board"}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
-      </CardsWrap>
+      {/* <CardsWrap> */}
+      {cardOnBoard.map((el, idx) => {
+        if (el) {
+          return (
+            <Card
+              key={el.id}
+              id={el.id}
+              idx={idx}
+              score={el.score}
+              cost={el.cost}
+              type={el.type}
+              location={"board"}
+            />
+          );
+        } else {
+          return null;
+        }
+      })}
+      {/* </CardsWrap> */}
     </TiersWrap>
   );
 }

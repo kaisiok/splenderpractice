@@ -15,9 +15,11 @@ function App() {
 
   return (
     <div className="App">
+      <div className="Board_container">
+        <Board />
+        <MyBoard />
+      </div>
       <Summary />
-      <Board />
-      <MyBoard />
     </div>
   );
 }

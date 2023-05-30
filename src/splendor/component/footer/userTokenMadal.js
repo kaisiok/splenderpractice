@@ -108,20 +108,7 @@ function UserTokenModal({ open, onClose }) {
       <ModalOverlay>
         <ModalContent>
           <h1>토큰이 10개 이하가 될 때 까지 버릴 토큰을 선택하세요</h1>
-          <div>
-            <h2>선택한 토큰</h2>
-            <div>
-              {Object.keys(selectedTokens).map((el) => {
-                if (selectedTokens[el] > 0) {
-                  return (
-                    <div key={el}>
-                      {el}:{selectedTokens[el]}
-                    </div>
-                  );
-                }
-              })}
-            </div>
-          </div>
+
           <MyTokensWrap>
             {Object.keys(activatedPlayer.tokens).map((el) => {
               return (
@@ -136,6 +123,22 @@ function UserTokenModal({ open, onClose }) {
               );
             })}
           </MyTokensWrap>
+          <div>
+            <h2>선택한 토큰</h2>
+            <MyTokensWrap>
+              {Object.keys(selectedTokens).map((el) => {
+                if (selectedTokens[el] > 0) {
+                  return (
+                    <MyToken
+                      key={el + "selected"}
+                      type={el}
+                      number={selectedTokens[el]}
+                    />
+                  );
+                }
+              })}
+            </MyTokensWrap>
+          </div>
           <button disabled={cancelButtonDisabled} onClick={handleCancle}>
             되돌리기
           </button>

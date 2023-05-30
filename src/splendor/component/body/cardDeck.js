@@ -5,11 +5,12 @@ import { openNewCard, shuffleCard } from "../../../redux/reducers/cardSlice";
 
 const CardDeckWrap = styled.div`
   background-color: ${(props) => props.backgroundColor};
-  border: 0.2em solid white;
+  border: 0.2rem solid white;
   border-radius: 8%;
-  height: 20%;
-  width: 18%;
+  width: 7rem;
+  height: 9rem;
   position: relative;
+  transform: translate(0, 0);
   & > .card_tier {
     position: absolute;
     top: 50%;

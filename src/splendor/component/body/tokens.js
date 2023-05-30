@@ -7,7 +7,7 @@ import TokenModal from "./tokenModal";
 const TokensWrap = styled.div`
   background-color: gainsboro;
   width: 10%;
-
+  height: 80%;
   margin: 1%;
   display: flex;
   flex-direction: column;

@@ -9,16 +9,16 @@ import onyxImg from "../../img/onyx.png";
 const MyTokenWrap = styled.div`
   box-sizing: border-box;
   display: block;
-  width: 2.5em;
-  height: 2.5em;
-  font-size: 2em;
+  width: 4rem;
+  height: 4rem;
+  font-size: 2rem;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
   color: #fff;
   background: white;
-  border: 8px dashed ${(props) => props.borderColor};
+  border: 5px dashed ${(props) => props.borderColor};
   border-radius: 6em;
   padding-top: 6em/2 - 1em;
   transition: all linear 0.15s;
@@ -33,6 +33,7 @@ const MyTokenWrap = styled.div`
     pointer-events: none;
     opacity: 0.5;
   `}
+  z-index:1;
   > img:nth-child(2) {
     width: ${(props) => props.imgSize}em;
     height: ${(props) => props.imgSize}em;
