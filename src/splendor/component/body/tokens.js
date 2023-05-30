@@ -35,21 +35,34 @@ function Tokens() {
       <MyToken
         type={"emeraldToken"}
         number={tokens.emeraldToken}
-        disabled={false}
+        disabled={tokens.emeraldToken === 0}
       />
+
       <MyToken
         type={"diamondToken"}
         number={tokens.diamondToken}
-        disabled={false}
+        disabled={tokens.diamondToken === 0}
       />
       <MyToken
         type={"sapphireToken"}
         number={tokens.sapphireToken}
-        disabled={false}
+        disabled={tokens.sapphireToken === 0}
       />
-      <MyToken type={"onyxToken"} number={tokens.onyxToken} disabled={false} />
-      <MyToken type={"rubyToken"} number={tokens.rubyToken} disabled={false} />
-      <MyToken type={"goldToken"} number={tokens.goldToken} disabled={false} />
+      <MyToken
+        type={"onyxToken"}
+        number={tokens.onyxToken}
+        disabled={tokens.onyxToken === 0}
+      />
+      <MyToken
+        type={"rubyToken"}
+        number={tokens.rubyToken}
+        disabled={tokens.rubyToken === 0}
+      />
+      <MyToken
+        type={"goldToken"}
+        number={tokens.goldToken}
+        disabled={tokens.goldToken === 0}
+      />
       <TokenModal open={openModal} onClose={handleClose} />
     </TokensWrap>
   );

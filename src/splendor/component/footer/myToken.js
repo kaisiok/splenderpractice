@@ -5,7 +5,45 @@ import sapphireImg from "../../img/sapphire.png";
 import diamondImg from "../../img/diamond.png";
 import emeraldImg from "../../img/emerald.png";
 import onyxImg from "../../img/onyx.png";
+const TokenStackWrap = styled.div`
+  position: relative;
+  ${(props) =>
+    props.disabled &&
+    `
+    pointer-events: none;
+    opacity: 0.5;
+  `}
+`;
+const TokenStack = styled.div`
+  position: absolute;
+  width: 100%;
+  top: ${(props) => {
+    return props.number;
+  }}px;
+  z-index: ${(props) => {
+    return 100 - props.number;
+  }};
+  & > .oval {
+    width: 100%;
+    height: 0.5rem;
+    background-color: ${(props) => props.borderColor};
+    position: absolute;
+    top: 1.3rem;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    z-index: 10;
+  }
 
+  > .bottom-oval {
+    width: 100%;
+    height: 4rem;
+    background-color: ${(props) => props.borderColor};
+    border-radius: 100%;
+    transform: rotateX(30deg);
+    border: 1px solid black;
+    position: absolute;
+  }
+`;
 const MyTokenWrap = styled.div`
   box-sizing: border-box;
   display: block;
@@ -19,24 +57,17 @@ const MyTokenWrap = styled.div`
   color: #fff;
   background: white;
   border: 5px dashed ${(props) => props.borderColor};
-  border-radius: 6em;
-  padding-top: 6em/2 - 1em;
+  border-radius: 100%;
   transition: all linear 0.15s;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   position: relative;
-  margin: 0.1em;
   text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black,
     -1px 1px 0 black;
-  ${(props) =>
-    props.disabled &&
-    `
-    pointer-events: none;
-    opacity: 0.5;
-  `}
-  z-index:1;
+  transform: rotateX(30deg);
+  z-index: 200;
   > img:nth-child(2) {
-    width: ${(props) => props.imgSize}em;
-    height: ${(props) => props.imgSize}em;
+    width: ${(props) => props.imgSize}rem;
+    height: ${(props) => props.imgSize}rem;
     position: absolute;
     top: 75%;
     left: 50%;
@@ -94,16 +125,29 @@ function MyToken({ type, number, handleClick, disabled }) {
   })();
 
   return (
-    <MyTokenWrap
-      onClick={handleClick}
-      imgType={type}
-      imgSize={imgSize}
-      borderColor={borderColor}
-      disabled={disabled}
-    >
-      <div>{number}</div>
-      <img src={backgroundImg} alt="ruby" />
-    </MyTokenWrap>
+    <TokenStackWrap disabled={disabled}>
+      <MyTokenWrap
+        onClick={handleClick}
+        imgType={type}
+        imgSize={imgSize}
+        borderColor={borderColor}
+      >
+        <div>{number}</div>
+        <img src={backgroundImg} alt="ruby" />
+      </MyTokenWrap>
+      {Array.from({ length: number }).map((el, idx) => {
+        return (
+          <TokenStack
+            number={idx * 5 + 5}
+            borderColor={borderColor}
+            key={"tokenstack" + idx}
+          >
+            <div className="oval"></div>
+            <div className="bottom-oval"></div>
+          </TokenStack>
+        );
+      })}
+    </TokenStackWrap>
   );
 }
 
