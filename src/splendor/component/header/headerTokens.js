@@ -2,13 +2,13 @@ import styled from "styled-components";
 import HeaderToken from "./headerToken";
 
 const TokensWrap = styled.div`
-  background-color: skyblue;
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-items: center;
+  padding-left: 10px;
 `;
 
 function HeaderTokens({ tokens }) {

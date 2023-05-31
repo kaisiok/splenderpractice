@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import User from "./user";
 
 const SummaryWrap = styled.div`
-  background-color: red;
+  background-color: gainsboro;
   height: 100%;
-  width: 18.75rem;
+  width: 23.75rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

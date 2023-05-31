@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 const TokenWrap = styled.div`
   background-color: ${(props) => props.tokenColor};
-  width: 70%;
-  height: 0;
-  padding-bottom: 70%;
-  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 100%;
   color: white;
   text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black,
     -1px 1px 0 black;

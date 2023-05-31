@@ -2,8 +2,8 @@ import styled from "styled-components";
 import MyCard from "../footer/myCard";
 
 const CardsWrap = styled.div`
-  background-color: pink;
-  width: 60%;
+  width: 100%;
+  height: 60%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -18,7 +18,7 @@ function HeaderCards({ cards }) {
             key={el}
             cardType={el}
             number={cards[el].length}
-            size={{ width: 2, height: 3, border: 0.5, font: 1 }}
+            size={{ width: 2, height: 3, border: 1.5, font: 1 }}
           />
         );
       })}
