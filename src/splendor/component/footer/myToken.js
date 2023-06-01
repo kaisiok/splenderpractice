@@ -7,6 +7,8 @@ import emeraldImg from "../../img/emerald.png";
 import onyxImg from "../../img/onyx.png";
 const TokenStackWrap = styled.div`
   position: relative;
+  width: 4rem;
+  height: 4rem;
   ${(props) =>
     props.disabled &&
     `
@@ -14,15 +16,20 @@ const TokenStackWrap = styled.div`
     opacity: 0.5;
   `}
 `;
+const SingleToken = styled.div`
+  position: absolute;
+  top: ${(props) => {
+    return -props.number;
+  }}px;
+`;
 const TokenStack = styled.div`
   position: absolute;
   width: 100%;
-  top: ${(props) => {
-    return props.number;
-  }}px;
-  z-index: ${(props) => {
+  top: 5px;
+  /* z-index: ${(props) => {
     return 100 - props.number;
-  }};
+  }}; */
+  z-index: 2;
   & > .oval {
     width: 100%;
     height: 0.5rem;
@@ -31,7 +38,6 @@ const TokenStack = styled.div`
     top: 1.3rem;
     border-left: 1px solid black;
     border-right: 1px solid black;
-    z-index: 10;
   }
 
   > .bottom-oval {
@@ -64,7 +70,12 @@ const MyTokenWrap = styled.div`
   text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black,
     -1px 1px 0 black;
   transform: rotateX(30deg);
-  z-index: 200;
+  z-index: 1;
+  ${(props) =>
+    props.last &&
+    `
+    z-index: 10;
+  `}
   > img:nth-child(2) {
     width: ${(props) => props.imgSize}rem;
     height: ${(props) => props.imgSize}rem;
@@ -126,22 +137,43 @@ function MyToken({ type, number, handleClick, disabled }) {
 
   return (
     <TokenStackWrap disabled={disabled} onClick={handleClick}>
-      <MyTokenWrap imgType={type} imgSize={imgSize} borderColor={borderColor}>
-        <div>{number}</div>
-        <img src={backgroundImg} alt="ruby" />
-      </MyTokenWrap>
-      {Array.from({ length: number }).map((el, idx) => {
-        return (
-          <TokenStack
-            number={idx * 5 + 5}
+      {number === 0 ? (
+        <SingleToken key={"singletokenstack" + type + 0} number={0}>
+          <MyTokenWrap
+            imgType={type}
+            imgSize={imgSize}
             borderColor={borderColor}
-            key={"tokenstack" + idx}
+            last={true}
           >
+            <div>{number}</div>
+            <img src={backgroundImg} alt="ruby" />
+          </MyTokenWrap>
+          <TokenStack borderColor={borderColor}>
             <div className="oval"></div>
             <div className="bottom-oval"></div>
           </TokenStack>
-        );
-      })}
+        </SingleToken>
+      ) : (
+        Array.from({ length: number }).map((el, idx) => {
+          return (
+            <SingleToken key={"singletokenstack" + type + idx} number={idx * 5}>
+              <MyTokenWrap
+                imgType={type}
+                imgSize={imgSize}
+                borderColor={borderColor}
+                last={number === idx + 1}
+              >
+                <div>{number}</div>
+                <img src={backgroundImg} alt="ruby" />
+              </MyTokenWrap>
+              <TokenStack borderColor={borderColor}>
+                <div className="oval"></div>
+                <div className="bottom-oval"></div>
+              </TokenStack>
+            </SingleToken>
+          );
+        })
+      )}
     </TokenStackWrap>
   );
 }
