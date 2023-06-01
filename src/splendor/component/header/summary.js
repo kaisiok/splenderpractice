@@ -4,7 +4,7 @@ import User from "./user";
 
 const SummaryWrap = styled.div`
   background-color: gainsboro;
-  height: 100%;
+  height: 54rem;
   width: 23.75rem;
   display: flex;
   flex-direction: column;

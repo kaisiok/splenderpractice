@@ -8,11 +8,16 @@ import {
 } from "../../../redux/reducers/userSlice";
 import { buyCardInTurn } from "../../../redux/reducers/turnSlice";
 import { buyCardToken } from "../../../redux/reducers/tokenSlice";
+import MyTokens from "./myTokens";
+const MyCard_TokenWrap = styled.div`
+  width: 40%;
+  height: 90%;
+`;
 
 const MyCardsWrap = styled.div`
   background-color: salmon;
-  width: 40%;
-  height: 90%;
+  width: 100%;
+  height: 70%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -87,18 +92,21 @@ function MyCards() {
   };
 
   return (
-    <MyCardsWrap onDragOver={handleDragOver} onDrop={handleDrop}>
-      {Object.keys(activatedPlayer.cards).map((el) => {
-        return (
-          <MyCard
-            key={el}
-            cardType={el}
-            number={activatedPlayer.cards[el].length}
-            size={{ width: 8, height: 12, border: 0.5, font: 3 }}
-          />
-        );
-      })}
-    </MyCardsWrap>
+    <MyCard_TokenWrap>
+      <MyTokens />
+      <MyCardsWrap onDragOver={handleDragOver} onDrop={handleDrop}>
+        {Object.keys(activatedPlayer.cards).map((el) => {
+          return (
+            <MyCard
+              key={el}
+              cardType={el}
+              number={activatedPlayer.cards[el].length}
+              size={{ width: 4, height: 6, border: 0.5, font: 3 }}
+            />
+          );
+        })}
+      </MyCardsWrap>
+    </MyCard_TokenWrap>
   );
 }
 

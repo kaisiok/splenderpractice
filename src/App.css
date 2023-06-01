@@ -7,9 +7,10 @@
   display: flex;
   float: left;
   justify-content: center;
+  align-items: center;
 }
 
 .Board_container {
   width: 70rem;
-  height: 100%;
+  height: 54rem;
 }

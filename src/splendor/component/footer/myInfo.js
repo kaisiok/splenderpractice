@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import MyTiles from "./myTiles";
-import MyTokens from "./myTokens";
+import MyHand from "./myHand";
 import { useSelector } from "react-redux";
 
 const MyInfoWrap = styled.div`
@@ -21,7 +21,7 @@ function MyInfo() {
     <MyInfoWrap>
       <div>score:{userSocer}</div>
       <MyTiles />
-      <MyTokens />
+      <MyHand />
     </MyInfoWrap>
   );
 }

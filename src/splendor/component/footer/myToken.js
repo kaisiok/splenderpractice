@@ -125,13 +125,8 @@ function MyToken({ type, number, handleClick, disabled }) {
   })();
 
   return (
-    <TokenStackWrap disabled={disabled}>
-      <MyTokenWrap
-        onClick={handleClick}
-        imgType={type}
-        imgSize={imgSize}
-        borderColor={borderColor}
-      >
+    <TokenStackWrap disabled={disabled} onClick={handleClick}>
+      <MyTokenWrap imgType={type} imgSize={imgSize} borderColor={borderColor}>
         <div>{number}</div>
         <img src={backgroundImg} alt="ruby" />
       </MyTokenWrap>

@@ -8,10 +8,9 @@ import { getGoldToken } from "../../../redux/reducers/tokenSlice";
 
 const MyHandWrap = styled.div`
   background-color: mediumturquoise;
-  width: 10%;
+  width: 100%;
   height: 90%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-around;
 `;

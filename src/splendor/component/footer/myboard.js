@@ -8,7 +8,6 @@ import {
 import { undoToken } from "../../../redux/reducers/tokenSlice";
 import { undoTokenUser } from "../../../redux/reducers/userSlice";
 import MyCards from "./myCards";
-import MyHand from "./myHand";
 import MyInfo from "./myInfo";
 
 const MyBoardWrap = styled.div`
@@ -107,7 +106,6 @@ function MyBoard() {
         undo
       </DoUndoButten>
       <MyCards />
-      <MyHand />
       <MyInfo />
       <DoUndoButten
         onClick={handleNextTurn}
