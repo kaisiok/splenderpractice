@@ -26,12 +26,15 @@ const Score_TileWrap = styled.div`
     height: 100%;
     font-size: 2rem;
     color: black;
-  }
-  > .userScore::first-letter {
-    font-size: 3rem;
-    color: #d6b534;
-    text-shadow: 1px 1px 0 gold, -1px -1px 0 gold, 1px -1px 0 gold,
-      -1px 1px 0 gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > .userScoreNumber {
+      font-size: 3rem;
+      color: #d6b534;
+      text-shadow: 1px 1px 0 gold, -1px -1px 0 gold, 1px -1px 0 gold,
+        -1px 1px 0 gold;
+    }
   }
 `;
 
@@ -42,7 +45,9 @@ function MyInfo() {
   return (
     <MyInfoWrap>
       <Score_TileWrap>
-        <div className="userScore">{userSocer} scored</div>
+        <div className="userScore">
+          <div className="userScoreNumber">{userSocer}</div> <div>scored</div>
+        </div>
         <MyTiles />
       </Score_TileWrap>
 
