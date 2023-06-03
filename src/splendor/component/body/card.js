@@ -25,19 +25,16 @@ const CardTopWrap = styled.div`
   align-items: center;
   background-color: rgba(255, 255, 255, 0.5);
   & > #score_in_card {
-    /* width: 30%; */
     margin-left: 0.3rem;
     right: 3rem;
     font-size: 2rem;
     color: #d6b534;
     text-shadow: 1px 1px 0 gold, -1px -1px 0 gold, 1px -1px 0 gold,
       -1px 1px 0 gold;
-    /* transform: translate(0%, 15%); */
   }
   & > #jewel_img {
     width: 2rem;
     height: 2rem;
-    /* transform: translate(60%, -80%); */
     -webkit-user-drag: none;
   }
 `;

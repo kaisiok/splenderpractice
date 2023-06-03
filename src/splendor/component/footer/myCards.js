@@ -11,16 +11,22 @@ import { buyCardToken } from "../../../redux/reducers/tokenSlice";
 import MyTokens from "./myTokens";
 const MyCard_TokenWrap = styled.div`
   width: 40%;
-  height: 90%;
+  height: 80%;
+  position: relative;
 `;
 
-const MyCardsWrap = styled.div`
-  background-color: salmon;
+const MyCardsWrap = styled.fieldset`
   width: 100%;
-  height: 70%;
+  height: 60%;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
 `;
 
 function MyCards() {
@@ -95,6 +101,7 @@ function MyCards() {
     <MyCard_TokenWrap>
       <MyTokens />
       <MyCardsWrap onDragOver={handleDragOver} onDrop={handleDrop}>
+        <legend>내가 구매한 카드</legend>
         {Object.keys(activatedPlayer.cards).map((el) => {
           return (
             <MyCard

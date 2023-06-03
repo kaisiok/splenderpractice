@@ -4,8 +4,7 @@ import Tokens from "./tokens";
 import Cards from "./cards";
 
 const BoardWrap = styled.div`
-  background-color: green;
-  height: 70%;
+  height: 65%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,8 +14,8 @@ function Board() {
   return (
     <BoardWrap>
       <Cards />
-      <Tiles />
       <Tokens />
+      <Tiles />
     </BoardWrap>
   );
 }

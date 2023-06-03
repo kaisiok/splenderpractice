@@ -11,13 +11,14 @@ import {
 
 const TilesWrap = styled.div`
   background-color: white;
-  width: 20%;
+  width: 10%;
   height: 80%;
   margin: 1%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  margin-right: 8rem;
 `;
 
 const TilesTopWrap = styled.div`

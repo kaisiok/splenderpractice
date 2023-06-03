@@ -11,14 +11,35 @@ import MyCards from "./myCards";
 import MyInfo from "./myInfo";
 
 const MyBoardWrap = styled.div`
-  background-color: yellow;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30%;
+  height: 35%;
 `;
 const DoUndoButten = styled.button`
-  width: 200px;
+  width: 7rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #04aa6d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin: auto;
+  ${(props) =>
+    props.canPlay &&
+    `
+    background-color: #ddd;
+    pointer-events: none;
+    opacity: 0.5;
+    color: black;
+  `}
+  :hover {
+    background-color: #ddd;
+    color: black;
+  }
 `;
 function MyBoard() {
   const dispatch = useDispatch();
@@ -102,16 +123,17 @@ function MyBoard() {
 
   return (
     <MyBoardWrap>
-      <DoUndoButten onClick={handleUndo} disabled={turnInfo.canPlay}>
-        undo
-      </DoUndoButten>
+      {/* <DoUndoButten onClick={handleUndo} disabled={turnInfo.canPlay}>
+        undo   //비활성화
+      </DoUndoButten> */}
       <MyCards />
       <MyInfo />
       <DoUndoButten
         onClick={handleNextTurn}
-        // disabled={turnInfo.canPlay}
+        disabled={turnInfo.canPlay}
+        canPlay={turnInfo.canPlay}
       >
-        next
+        Next &raquo;
       </DoUndoButten>
     </MyBoardWrap>
   );

@@ -5,14 +5,24 @@ import MyToken from "../footer/myToken";
 import TokenModal from "./tokenModal";
 
 const TokensWrap = styled.div`
-  background-color: gainsboro;
-  width: 10%;
+  width: 15%;
   height: 80%;
   margin: 1%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  border: 5px solid black;
+  border-radius: 30px;
+  ${(props) =>
+    props.canPlay &&
+    `
+    cursor: pointer;
+    :hover {
+    border-color: blue;
+    background-color: gainsboro;
+  }
+  `}
 `;
 
 function Tokens() {
@@ -31,7 +41,7 @@ function Tokens() {
   };
 
   return (
-    <TokensWrap onClick={handleClick}>
+    <TokensWrap onClick={handleClick} canPlay={isActivated}>
       <MyToken
         type={"emeraldToken"}
         number={tokens.emeraldToken}

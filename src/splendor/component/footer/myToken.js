@@ -26,9 +26,6 @@ const TokenStack = styled.div`
   position: absolute;
   width: 100%;
   top: 5px;
-  /* z-index: ${(props) => {
-    return 100 - props.number;
-  }}; */
   z-index: 2;
   & > .oval {
     width: 100%;

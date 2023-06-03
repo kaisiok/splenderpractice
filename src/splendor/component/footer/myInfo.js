@@ -4,13 +4,35 @@ import MyHand from "./myHand";
 import { useSelector } from "react-redux";
 
 const MyInfoWrap = styled.div`
-  background-color: whitesmoke;
-  width: 30%;
-  height: 90%;
+  width: 45%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  border: 3px solid black;
+  border-radius: 20px;
+  margin-left: 2rem;
+`;
+
+const Score_TileWrap = styled.div`
+  height: 40%;
+  width: 95%;
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  > .userScore {
+    width: 40%;
+    height: 100%;
+    font-size: 2rem;
+    color: black;
+  }
+  > .userScore::first-letter {
+    font-size: 3rem;
+    color: #d6b534;
+    text-shadow: 1px 1px 0 gold, -1px -1px 0 gold, 1px -1px 0 gold,
+      -1px 1px 0 gold;
+  }
 `;
 
 function MyInfo() {
@@ -19,8 +41,11 @@ function MyInfo() {
   );
   return (
     <MyInfoWrap>
-      <div>score:{userSocer}</div>
-      <MyTiles />
+      <Score_TileWrap>
+        <div className="userScore">{userSocer} scored</div>
+        <MyTiles />
+      </Score_TileWrap>
+
       <MyHand />
     </MyInfoWrap>
   );

@@ -5,10 +5,12 @@ import MyToken from "./myToken";
 import UserTokenModal from "./userTokenMadal";
 
 const MyTokensWrap = styled.div`
-  background-color: skyblue;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  height: 35%;
+  border: 3px solid black;
+  border-radius: 20px;
 `;
 function MyTokens() {
   const [openModal, setOpenModal] = useState(false);

@@ -7,12 +7,24 @@ import { bringCardInTurn } from "../../../redux/reducers/turnSlice";
 import { getGoldToken } from "../../../redux/reducers/tokenSlice";
 
 const MyHandWrap = styled.div`
-  background-color: mediumturquoise;
-  width: 100%;
-  height: 90%;
-  display: flex;
+  width: 95%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 3rem 1fr 1fr 1fr;
   align-items: center;
   justify-content: space-around;
+  border: 3px solid gray;
+  border-radius: 20px;
+  margin: 10px;
+  > .handEmoji {
+    font-size: 2.5rem;
+  }
+`;
+const EmptyCard = styled.div`
+  border: 0.3rem dashed gray;
+  border-radius: 7%;
+  width: 7rem;
+  height: 9rem;
 `;
 
 function MyHand() {
@@ -78,6 +90,7 @@ function MyHand() {
 
   return (
     <MyHandWrap onDragOver={handleDragOver} onDrop={handleDrop}>
+      <div className="handEmoji">🖐️</div>
       {handedCards.map((el, idx) => (
         <Card
           key={el.id}
@@ -89,6 +102,9 @@ function MyHand() {
           location={"hand"}
         />
       ))}
+      {handedCards.length < 1 ? <EmptyCard></EmptyCard> : null}
+      {handedCards.length < 2 ? <EmptyCard></EmptyCard> : null}
+      {handedCards.length < 3 ? <EmptyCard></EmptyCard> : null}
     </MyHandWrap>
   );
 }
