@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import {
   nextTurn,
   undoTurn,
@@ -9,37 +10,14 @@ import { undoToken } from "../../../redux/reducers/tokenSlice";
 import { undoTokenUser } from "../../../redux/reducers/userSlice";
 import MyCards from "./myCards";
 import MyInfo from "./myInfo";
+import MyButton from "../body/myButton";
+import Notification from "./notification";
 
 const MyBoardWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 35%;
-`;
-const DoUndoButten = styled.button`
-  width: 7rem;
-  height: 4rem;
-  font-size: 1.5rem;
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #04aa6d;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  margin: auto;
-  ${(props) =>
-    props.canPlay &&
-    `
-    background-color: #ddd;
-    pointer-events: none;
-    opacity: 0.5;
-    color: black;
-  `}
-  :hover {
-    background-color: #ddd;
-    color: black;
-  }
 `;
 function MyBoard() {
   const dispatch = useDispatch();
@@ -48,6 +26,8 @@ function MyBoard() {
     (state) => state.user[state.turn.activatedPlayer - 1]
   );
   const allUser = useSelector((state) => state.user);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   function handleUndo() {
     if (turnInfo.action === "tokens") {
@@ -58,7 +38,8 @@ function MyBoard() {
       turnInfo.action === "buyCard" ||
       turnInfo.action === "bringCard"
     ) {
-      alert("카드를 가져왔을 땐 행동을 취소할 수 없습니다.");
+      setNotificationMessage("카드를 가져왔을 땐 행동을 취소할 수 없습니다");
+      setShowNotification(true);
     }
   }
   function handleNextTurn() {
@@ -105,16 +86,19 @@ function MyBoard() {
         }
       }
       if (winner.length === 1) {
-        alert(`${winner[0]} 님이 승리했습니다.`);
+        setNotificationMessage(`${winner[0]} 님이 승리했습니다`);
+        setShowNotification(true);
       } else if (winner.length > 1) {
         let str = "";
         for (let i = 0; i < winner.length; i++) {
           str = str + winner[i] + ",";
         }
         str = str.slice(0, 1);
-        alert(`${str} 님이 승리했습니다.`);
+        setNotificationMessage(`${str} 님이 승리했습니다`);
+        setShowNotification(true);
       } else {
-        alert("error");
+        setNotificationMessage(`승리조건 에러`);
+        setShowNotification(true);
       }
     } else {
       dispatch(nextTurn());
@@ -128,13 +112,18 @@ function MyBoard() {
       </DoUndoButten> */}
       <MyCards />
       <MyInfo />
-      <DoUndoButten
+      <MyButton
         onClick={handleNextTurn}
         disabled={turnInfo.canPlay}
         canPlay={turnInfo.canPlay}
-      >
-        Next &raquo;
-      </DoUndoButten>
+        str={"Next >"}
+      />
+      {showNotification && (
+        <Notification
+          handleNotification={setShowNotification}
+          message={notificationMessage}
+        />
+      )}
     </MyBoardWrap>
   );
 }

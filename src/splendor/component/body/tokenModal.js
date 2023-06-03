@@ -6,6 +6,7 @@ import { getTokenInTurn } from "../../../redux/reducers/turnSlice";
 import { getToken, cancelGetToken } from "../../../redux/reducers/tokenSlice";
 import { getTokenUser } from "../../../redux/reducers/userSlice";
 import MyToken from "../footer/myToken";
+import MyButton from "./myButton";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -26,9 +27,15 @@ const ModalContent = styled.div`
   background-color: white;
   border-radius: 10px;
   padding: 20px;
-  width: 50%;
-  height: 50%;
+  width: 60rem;
+  height: 35rem;
   text-align: center;
+  > .buttonContainer {
+    margin: auto;
+    margin-top: 3rem;
+    display: flex;
+    width: 20rem;
+  }
 `;
 
 const ModalClose = styled.button`
@@ -44,7 +51,19 @@ const ModalClose = styled.button`
 `;
 const TokenContainer = styled.div`
   display: flex;
-  justify-content: center;
+  border: 3px solid black;
+  border-radius: 20px;
+  width: 40rem;
+  height: 7rem;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+  padding-top: 1.5rem;
+  &.selectedToken {
+    width: 20rem;
+    height: 5rem;
+    padding-top: 0;
+  }
 `;
 
 function TokenModal({ open, onClose }) {
@@ -113,8 +132,10 @@ function TokenModal({ open, onClose }) {
     );
     setSelectedToken({});
     setIsTokenSelected(false);
+    onClose();
   }
-  function hadleCancel() {
+  function hadleCancel(e) {
+    e.stopPropagation();
     dispatch(cancelGetToken(selectedToken));
     setSelectedToken({});
     setIsTokenSelected(false);
@@ -122,6 +143,11 @@ function TokenModal({ open, onClose }) {
 
   function hadleModalClose() {
     if (!isTokenSelected) {
+      onClose();
+    } else {
+      dispatch(cancelGetToken(selectedToken));
+      setSelectedToken({});
+      setIsTokenSelected(false);
       onClose();
     }
   }
@@ -132,7 +158,7 @@ function TokenModal({ open, onClose }) {
       <ModalOverlay onClick={hadleModalClose}>
         <ModalContent onClick={(e) => e.stopPropagation()}>
           <ModalClose onClick={hadleModalClose}>&times;</ModalClose>{" "}
-          <h1>토큰을 고른 후 확인버튼을 눌러주세요</h1>
+          <h1>토큰을 선택하고 확인버튼을 눌러주세요</h1>
           <TokenContainer>
             {Object.keys(tokenInModal).map((el) => {
               if (el !== "goldToken") {
@@ -154,7 +180,7 @@ function TokenModal({ open, onClose }) {
           </TokenContainer>
           <div>
             <h2>선택한 토큰</h2>
-            <TokenContainer>
+            <TokenContainer className="selectedToken">
               {Object.keys(selectedToken).map((el) => {
                 return (
                   <MyToken
@@ -167,11 +193,20 @@ function TokenModal({ open, onClose }) {
               })}
             </TokenContainer>
           </div>
-          <div onClick={onClose}>
-            <button onClick={hadleCancel}>취소</button>
-            <button onClick={handleConfirm} disabled={!isTokenSelected}>
-              확인
-            </button>
+          <div className={"buttonContainer"}>
+            <MyButton
+              onClick={hadleCancel}
+              disabled={!isTokenSelected}
+              str={"취소"}
+              canPlay={!isTokenSelected}
+            />
+
+            <MyButton
+              onClick={handleConfirm}
+              disabled={!isTokenSelected}
+              str={"확인"}
+              canPlay={!isTokenSelected}
+            />
           </div>
         </ModalContent>
       </ModalOverlay>

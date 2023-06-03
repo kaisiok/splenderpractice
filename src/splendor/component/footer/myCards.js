@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import MyCard from "./myCard";
 import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 import { buyCard } from "../../../redux/reducers/cardSlice";
 import {
   buyCardUser,
@@ -9,6 +10,8 @@ import {
 import { buyCardInTurn } from "../../../redux/reducers/turnSlice";
 import { buyCardToken } from "../../../redux/reducers/tokenSlice";
 import MyTokens from "./myTokens";
+import Notification from "./notification";
+
 const MyCard_TokenWrap = styled.div`
   width: 40%;
   height: 80%;
@@ -35,6 +38,8 @@ function MyCards() {
     (state) => state.user[state.turn.activatedPlayer - 1]
   );
   const cardOnBoard = useSelector((state) => state.card.cardOnBoard);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
   const userTokens = activatedPlayer.tokens;
   const userCards = activatedPlayer.cards;
 
@@ -62,7 +67,8 @@ function MyCards() {
     event.preventDefault();
     let data = event.dataTransfer.getData("text/plain");
     if (data.slice(0, 8) === "deckDrag") {
-      alert("덱에 있는 카드는 핸드로만 가져올 수 있습니다.");
+      setNotificationMessage("덱에 있는 카드는 핸드로만 가져올 수 있습니다");
+      setShowNotification(true);
     } else if (data.slice(0, 5) === "board") {
       data = data.slice(5);
       const cardTier = "tier" + data[0];
@@ -76,7 +82,8 @@ function MyCards() {
         dispatch(buyCardInTurn(payload));
         dispatch(buyCardToken(payload));
       } else {
-        alert("토큰이 모자랍니다.");
+        setNotificationMessage("토큰이 모자랍니다");
+        setShowNotification(true);
       }
     } else if (data.slice(0, 4) === "hand") {
       data = data.slice(4);
@@ -90,10 +97,12 @@ function MyCards() {
         dispatch(buyCardInTurn(payload));
         dispatch(buyCardToken(payload));
       } else {
-        alert("토큰이 모자랍니다.");
+        setNotificationMessage("토큰이 모자랍니다");
+        setShowNotification(true);
       }
     } else {
-      alert("에러");
+      setNotificationMessage("에러");
+      setShowNotification(true);
     }
   };
 
@@ -113,6 +122,12 @@ function MyCards() {
           );
         })}
       </MyCardsWrap>
+      {showNotification && (
+        <Notification
+          message={notificationMessage}
+          handleNotification={setShowNotification}
+        />
+      )}
     </MyCard_TokenWrap>
   );
 }

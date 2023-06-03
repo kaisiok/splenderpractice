@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import MyToken from "./myToken";
+import MyButton from "../body/myButton";
 import {
   getBackTokenUser,
   getTokenUser,
@@ -28,18 +29,32 @@ const ModalContent = styled.div`
   background-color: white;
   border-radius: 10px;
   padding: 20px;
-  width: 50%;
-  height: 50%;
+  width: 60rem;
+  height: 35rem;
   text-align: center;
+  > .buttonContainer {
+    margin: auto;
+    margin-top: 3rem;
+    display: flex;
+    width: 20rem;
+  }
 `;
 
 const MyTokensWrap = styled.div`
-  background-color: skyblue;
-  width: 100%;
-  height: 40%;
   display: flex;
-  justify-content: space-around;
+  border: 3px solid black;
+  border-radius: 20px;
+  width: 40rem;
+  height: 7rem;
+  justify-content: space-evenly;
   align-items: center;
+  margin: auto;
+  padding-top: 1.5rem;
+  &.selectedToken {
+    width: 20rem;
+    height: 5rem;
+    padding-top: 0;
+  }
 `;
 
 function UserTokenModal({ open, onClose }) {
@@ -125,7 +140,7 @@ function UserTokenModal({ open, onClose }) {
           </MyTokensWrap>
           <div>
             <h2>선택한 토큰</h2>
-            <MyTokensWrap>
+            <MyTokensWrap className="selectedToken">
               {Object.keys(selectedTokens).map((el) => {
                 if (selectedTokens[el] > 0) {
                   return (
@@ -139,12 +154,20 @@ function UserTokenModal({ open, onClose }) {
               })}
             </MyTokensWrap>
           </div>
-          <button disabled={cancelButtonDisabled} onClick={handleCancle}>
-            되돌리기
-          </button>
-          <button disabled={checkToken10()} onClick={handleConfirm}>
-            확인
-          </button>
+          <div className={"buttonContainer"}>
+            <MyButton
+              disabled={cancelButtonDisabled}
+              onClick={handleCancle}
+              str={"취소"}
+              canPlay={cancelButtonDisabled}
+            />
+            <MyButton
+              disabled={checkToken10()}
+              onClick={handleConfirm}
+              str={"확인"}
+              canPlay={checkToken10()}
+            />
+          </div>
         </ModalContent>
       </ModalOverlay>
     </div>,

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 import Card from "../body/card";
+import Notification from "./notification";
 import { bringCardUser } from "../../../redux/reducers/userSlice";
 import { bringCard, bringDeck } from "../../../redux/reducers/cardSlice";
 import { bringCardInTurn } from "../../../redux/reducers/turnSlice";
@@ -35,6 +37,8 @@ function MyHand() {
   const cardOnBoard = useSelector((state) => state.card.cardOnBoard);
   const cardOnDeck = useSelector((state) => state.card.cardOnDeck);
   const remainGoldToken = useSelector((state) => state.tokens.goldToken);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -81,10 +85,12 @@ function MyHand() {
       } else if (data.slice(0, 4) === "hand") {
         //손에서 손으로 옮기는 상황 아무일도 일어나지 않는다
       } else {
-        alert("에러");
+        setNotificationMessage("에러");
+        setShowNotification(true);
       }
     } else {
-      alert("최대 3장까지 손에 들 수 있습니다.");
+      setNotificationMessage("최대 3장까지 손에 들 수 있습니다");
+      setShowNotification(true);
     }
   };
 
@@ -105,6 +111,12 @@ function MyHand() {
       {handedCards.length < 1 ? <EmptyCard></EmptyCard> : null}
       {handedCards.length < 2 ? <EmptyCard></EmptyCard> : null}
       {handedCards.length < 3 ? <EmptyCard></EmptyCard> : null}
+      {showNotification && (
+        <Notification
+          handleNotification={setShowNotification}
+          message={notificationMessage}
+        />
+      )}
     </MyHandWrap>
   );
 }
