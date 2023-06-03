@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const MyButtonWrap = styled.button`
-  width: 7rem;
-  height: 4rem;
-  font-size: 1.5rem;
+  width: ${(props) => props.buttonSize.width}rem;
+  height: ${(props) => props.buttonSize.height}rem;
+  font-size: ${(props) => props.buttonSize.font}rem;
   text-decoration: none;
   display: inline-block;
   padding: 8px 16px;
@@ -26,9 +26,16 @@ const MyButtonWrap = styled.button`
   }
 `;
 
-function MyButton({ onClick, str, canPlay, disabled }) {
+function MyButton({ onClick, str, canPlay, disabled, size }) {
+  const buttonSize = size ? size : { width: 7, height: 4, font: 1.5 };
+
   return (
-    <MyButtonWrap canPlay={canPlay} disabled={disabled} onClick={onClick}>
+    <MyButtonWrap
+      canPlay={canPlay}
+      disabled={disabled}
+      onClick={onClick}
+      buttonSize={buttonSize}
+    >
       {str}
     </MyButtonWrap>
   );

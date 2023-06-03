@@ -12,6 +12,7 @@ import MyCards from "./myCards";
 import MyInfo from "./myInfo";
 import MyButton from "../body/myButton";
 import Notification from "./notification";
+import WinnerModal from "./winnerModal";
 
 const MyBoardWrap = styled.div`
   display: flex;
@@ -28,6 +29,7 @@ function MyBoard() {
   const allUser = useSelector((state) => state.user);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
+  const [winnerModalOpen, setWinnerModalOpne] = useState(false);
 
   function handleUndo() {
     if (turnInfo.action === "tokens") {
@@ -87,7 +89,7 @@ function MyBoard() {
       }
       if (winner.length === 1) {
         setNotificationMessage(`${winner[0]} 님이 승리했습니다`);
-        setShowNotification(true);
+        setWinnerModalOpne(true);
       } else if (winner.length > 1) {
         let str = "";
         for (let i = 0; i < winner.length; i++) {
@@ -95,7 +97,7 @@ function MyBoard() {
         }
         str = str.slice(0, 1);
         setNotificationMessage(`${str} 님이 승리했습니다`);
-        setShowNotification(true);
+        setWinnerModalOpne(true);
       } else {
         setNotificationMessage(`승리조건 에러`);
         setShowNotification(true);
@@ -124,6 +126,7 @@ function MyBoard() {
           message={notificationMessage}
         />
       )}
+      <WinnerModal open={winnerModalOpen} message={notificationMessage} />
     </MyBoardWrap>
   );
 }
