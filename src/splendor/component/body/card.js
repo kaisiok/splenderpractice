@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import rubyImg from "../../img/ruby.png";
 import sapphireImg from "../../img/sapphire.png";
@@ -17,6 +17,10 @@ const CardWrap = styled.div`
   height: 9rem;
   position: relative;
   transform: translate(0, 0);
+  &.dragging {
+    opacity: 0.1;
+    cursor: grabbing;
+  }
 `;
 const CardTopWrap = styled.div`
   height: 3rem;
@@ -55,9 +59,15 @@ const JewelCostWrap = styled.div`
 
 function Card({ score, cost, type, id, idx, location }) {
   const isDraggable = useSelector((state) => state.turn.canPlay);
+  const [isDragging, setIsDragging] = useState(false);
+
   const cardDragRef = useRef(null);
   const handleDragStart = (event) => {
+    setIsDragging(true);
     event.dataTransfer.setData("text/plain", location + event.target.id + idx);
+  };
+  const handleDragEnd = () => {
+    setIsDragging(false);
   };
 
   const borderColor = (() => {
@@ -96,9 +106,11 @@ function Card({ score, cost, type, id, idx, location }) {
 
   return (
     <CardWrap
+      className={`${isDragging ? "dragging" : ""}`}
       draggable={isDraggable}
       id={id}
       onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
       ref={cardDragRef}
       borderColor={borderColor}
     >
