@@ -116,8 +116,10 @@ function MyBoard() {
       <MyInfo />
       <MyButton
         onClick={handleNextTurn}
-        disabled={turnInfo.canPlay}
-        canPlay={turnInfo.canPlay}
+        // disabled={turnInfo.canPlay}
+        // canPlay={turnInfo.canPlay}
+        disabled={false}
+        canPlay={false}
         str={"Next >"}
       />
       {showNotification && (

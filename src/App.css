@@ -8,6 +8,23 @@
   float: left;
   justify-content: center;
   align-items: center;
+  position: relative;
+  background: none;
+  overflow: hidden;
+  font-family: "Gowun Batang", serif;
+}
+.App::before {
+  background-image: url(./splendor/img/Splendor-Head.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  filter: blur(8px);
+  content: "";
+  position: absolute;
+  transform: scale(1.1);
 }
 
 .Board_container {

@@ -32,6 +32,7 @@ function MyTiles() {
               score={el.score}
               cost={el.cost}
               location={"myTiles"}
+              image={el.image}
             />
           );
         })

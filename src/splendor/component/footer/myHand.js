@@ -106,6 +106,7 @@ function MyHand() {
           cost={el.cost}
           type={el.type}
           location={"hand"}
+          tier={el.tier}
         />
       ))}
       {handedCards.length < 1 ? <EmptyCard></EmptyCard> : null}

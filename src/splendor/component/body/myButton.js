@@ -12,6 +12,7 @@ const MyButtonWrap = styled.button`
   border: none;
   border-radius: 10px;
   margin: auto;
+  font-family: "Gowun Batang", serif;
   ${(props) =>
     props.canPlay &&
     `

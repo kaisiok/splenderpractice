@@ -12,6 +12,7 @@ const NotificationContainer = styled.div`
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  font-family: "Gowun Batang", serif;
 `;
 
 const Notification = ({ message, handleNotification }) => {

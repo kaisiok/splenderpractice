@@ -10,7 +10,6 @@ import {
 } from "../../../redux/reducers/turnSlice";
 
 const TilesWrap = styled.div`
-  background-color: white;
   width: 10%;
   height: 80%;
   margin: 1%;
@@ -37,8 +36,8 @@ const TilesBottomWrap = styled.div`
 
 const DummyTile = styled.div`
   border-radius: 10%;
-  height: 8rem;
-  width: 8rem;
+  height: 5rem;
+  width: 5rem;
   border: dashed;
 `;
 
@@ -87,6 +86,7 @@ function Tiles() {
           key={tileOnBoard[0].id}
           score={tileOnBoard[0].score}
           cost={tileOnBoard[0].cost}
+          image={tileOnBoard[0].image}
         />
       ) : (
         <DummyTile />
@@ -96,6 +96,7 @@ function Tiles() {
           key={tileOnBoard[1].id}
           score={tileOnBoard[1].score}
           cost={tileOnBoard[1].cost}
+          image={tileOnBoard[1].image}
         />
       ) : (
         <DummyTile />
@@ -105,6 +106,7 @@ function Tiles() {
           key={tileOnBoard[2].id}
           score={tileOnBoard[2].score}
           cost={tileOnBoard[2].cost}
+          image={tileOnBoard[2].image}
         />
       ) : (
         <DummyTile />
@@ -114,6 +116,7 @@ function Tiles() {
           key={tileOnBoard[3].id}
           score={tileOnBoard[3].score}
           cost={tileOnBoard[3].cost}
+          image={tileOnBoard[3].image}
         />
       ) : (
         <DummyTile />
@@ -123,6 +126,7 @@ function Tiles() {
           key={tileOnBoard[4].id}
           score={tileOnBoard[4].score}
           cost={tileOnBoard[4].cost}
+          image={tileOnBoard[4].image}
         />
       ) : (
         <DummyTile />

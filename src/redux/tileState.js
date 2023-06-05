@@ -9,6 +9,7 @@ export const tileState = [
       onyxCards: 3,
       rubyCards: 0,
     },
+    image: "tile_id_1",
   },
   {
     id: "tile2",
@@ -20,6 +21,7 @@ export const tileState = [
       onyxCards: 0,
       rubyCards: 0,
     },
+    image: "tile_id_2",
   },
   {
     id: "tile3",
@@ -31,6 +33,7 @@ export const tileState = [
       onyxCards: 0,
       rubyCards: 4,
     },
+    image: "tile_id_3",
   },
   {
     id: "tile4",
@@ -42,6 +45,7 @@ export const tileState = [
       onyxCards: 4,
       rubyCards: 4,
     },
+    image: "tile_id_4",
   },
   {
     id: "tile5",
@@ -53,6 +57,7 @@ export const tileState = [
       onyxCards: 0,
       rubyCards: 0,
     },
+    image: "tile_id_5",
   },
   {
     id: "tile6",
@@ -64,6 +69,7 @@ export const tileState = [
       onyxCards: 0,
       rubyCards: 3,
     },
+    image: "tile_id_6",
   },
   {
     id: "tile7",
@@ -75,6 +81,7 @@ export const tileState = [
       onyxCards: 3,
       rubyCards: 3,
     },
+    image: "tile_id_7",
   },
   {
     id: "tile8",
@@ -86,6 +93,7 @@ export const tileState = [
       onyxCards: 0,
       rubyCards: 0,
     },
+    image: "tile_id_8",
   },
   {
     id: "tile9",
@@ -97,6 +105,7 @@ export const tileState = [
       onyxCards: 3,
       rubyCards: 3,
     },
+    image: "tile_id_9",
   },
   {
     id: "tile10",
@@ -108,5 +117,6 @@ export const tileState = [
       onyxCards: 4,
       rubyCards: 0,
     },
+    image: "tile_id_10",
   },
 ];

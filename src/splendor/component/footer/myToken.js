@@ -77,7 +77,7 @@ const MyTokenWrap = styled.div`
     width: ${(props) => props.imgSize}rem;
     height: ${(props) => props.imgSize}rem;
     position: absolute;
-    top: 75%;
+    top: 85%;
     left: 50%;
     transform: translate(-50%, -50%);
   }

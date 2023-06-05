@@ -38,6 +38,7 @@ function Tiers({ tier }) {
               cost={el.cost}
               type={el.type}
               location={"board"}
+              tier={el.tier}
             />
           );
         } else {

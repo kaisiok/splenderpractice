@@ -11,6 +11,7 @@ const ModalOverlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
+  font-family: "Gowun Batang", serif;
   ${(props) =>
     props.showBoard &&
     `
