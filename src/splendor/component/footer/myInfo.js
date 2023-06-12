@@ -29,11 +29,14 @@ const Score_TileWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white,
+      -1px 1px 0 white;
     > .userScoreNumber {
       font-size: 3rem;
       color: #d6b534;
       text-shadow: 1px 1px 0 gold, -1px -1px 0 gold, 1px -1px 0 gold,
         -1px 1px 0 gold;
+      margin-right: 1rem;
     }
   }
 `;
