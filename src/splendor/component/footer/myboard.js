@@ -13,12 +13,18 @@ import MyInfo from "./myInfo";
 import MyButton from "../body/myButton";
 import Notification from "./notification";
 import WinnerModal from "./winnerModal";
+import Toggle from "./toggle";
 
 const MyBoardWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 35%;
+  > .buttonContainer {
+    width: 7rem;
+    margin: auto;
+    padding-top: 3rem;
+  }
 `;
 function MyBoard() {
   const dispatch = useDispatch();
@@ -30,6 +36,7 @@ function MyBoard() {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
   const [winnerModalOpen, setWinnerModalOpne] = useState(false);
+  const [isEngineerMod, setIsEngineerMod] = useState(false);
 
   function handleUndo() {
     if (turnInfo.action === "tokens") {
@@ -107,6 +114,10 @@ function MyBoard() {
     }
   }
 
+  function handleEngineerMod() {
+    setIsEngineerMod(!isEngineerMod);
+  }
+
   return (
     <MyBoardWrap>
       {/* <DoUndoButten onClick={handleUndo} disabled={turnInfo.canPlay}>
@@ -114,14 +125,17 @@ function MyBoard() {
       </DoUndoButten> */}
       <MyCards />
       <MyInfo />
-      <MyButton
-        onClick={handleNextTurn}
-        // disabled={turnInfo.canPlay}
-        // canPlay={turnInfo.canPlay}
-        disabled={false}
-        canPlay={false}
-        str={"Next >"}
-      />
+      <div className="buttonContainer">
+        <MyButton
+          onClick={handleNextTurn}
+          disabled={turnInfo.canPlay && !isEngineerMod}
+          canPlay={turnInfo.canPlay && !isEngineerMod}
+          str={"Next >"}
+        />{" "}
+        개발자 모드
+        <Toggle onoff={handleEngineerMod} />
+      </div>
+
       {showNotification && (
         <Notification
           handleNotification={setShowNotification}
