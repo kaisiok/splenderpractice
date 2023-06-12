@@ -33,6 +33,11 @@ const ModalContent = styled.div`
   width: 60rem;
   height: 35rem;
   text-align: center;
+  ${(props) =>
+    props.hidden &&
+    `
+    display: none;
+  `}
   > .buttonContainer {
     margin: auto;
     margin-top: 3rem;
@@ -72,6 +77,7 @@ function UserTokenModal({ open, onClose }) {
     goldToken: 0,
   });
   const [cancelButtonDisabled, setCancelButtonDisabled] = useState(true);
+  const [hideModal, setHideModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -117,12 +123,15 @@ function UserTokenModal({ open, onClose }) {
     });
     setCancelButtonDisabled(true);
   }
+  function handleHideModal() {
+    setHideModal(!hideModal);
+  }
 
   if (!open) return null;
   return createPortal(
     <div onClick={(e) => e.stopPropagation()}>
-      <ModalOverlay>
-        <ModalContent>
+      <ModalOverlay onClick={handleHideModal}>
+        <ModalContent hidden={hideModal} onClick={(e) => e.stopPropagation()}>
           <h1>토큰이 10개 이하가 될 때 까지 버릴 토큰을 선택하세요</h1>
 
           <MyTokensWrap>
