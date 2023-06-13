@@ -1,7 +1,7 @@
 import "./App.css";
 import Summary from "./splendor/component/header/summary";
 import Board from "./splendor/component/body/board";
-import MyBoard from "./splendor/component/footer/myBoard";
+// import MyBoard from "./splendor/component/footer/myBoard";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { shuffleTile } from "./redux/reducers/tileSlice";
@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <div className="Board_container">
         <Board />
-        <MyBoard />
+        {/* <MyBoard /> */}
       </div>
       <Summary />
     </div>
