@@ -1,7 +1,7 @@
 import "./App.css";
-import Summary from "./splendor/component/header/summary.js";
-import Board from "./splendor/component/body/board.js";
-import MyBoard from "./splendor/component/footer/myBoard.js";
+import Summary from "./splendor/component/header/summary";
+import Board from "./splendor/component/body/board";
+import MyBoard from "./splendor/component/footer/myBoard";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { shuffleTile } from "./redux/reducers/tileSlice";
