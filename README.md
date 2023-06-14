@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# splendor 보드게임을 구현했습니다
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+css, 알고리즘을 연습하기 위한 스몰 프로젝트로서, React와 styeld component 만을 사용해 만든 간단한 보드게임입니다.
 
-## Available Scripts
+## 명령어
 
-In the project directory, you can run:
+다음과 같은 명령어를 사용하실 수 있습니다.
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+실행을 위한 명령어 입니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 기본 컨셉 
+![스크린샷 2023-06-14 오후 6 13 03](https://github.com/kaisiok/splendorpractice/assets/95914687/66c73d44-3236-4438-ba90-7f273a5f996d)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+토큰을 모아 카드(그림)을 구매합니다. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+한번 그림을 구매하면 다른 그림을 구매할 때 할인 혜택을 받을 수 있습니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+특정 그림들을 모으면 귀족들이 방문합니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+그림과 귀족들을 모아 가장 높은 명성을 얻는 사람이 승리합니다.
 
-### `npm run eject`
+## 게임 진행
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+플레이어는 자기 차례에 다음 3가지 행동중 하나를 할 수 있습니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1.카드 구매하기
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2.토큰 가져오기
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3.손에 카드 선점하기
 
-## Learn More
+## 카드 구매하기
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![buyCard](https://github.com/kaisiok/splendorpractice/assets/95914687/96edce68-1551-4db9-99f9-7f3aa8622bd0)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+카드의 아래쪽엔 그 카드를 사기 위한 비용이 표시되어 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+비용만큼의 토큰을 지불하고 카드를 구매합니다.
 
-### Analyzing the Bundle Size
+카드의 왼쪽 위에는 그 카드가 제공하는 점수가 표시되어 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+카드의 테두리와 오른쪽 위에는 그 카드의 타입이 표시되어 있습니다.
 
-### Making a Progressive Web App
+내가 만약 검은색 타입의 카드를 구매했다면, 다음부터 카드를 구입할 때, 내가 가진 검은색 타입의 카드만큼 검은색 토큰을 덜 지불해도 카드를 구매할 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 토큰 가져오기
 
-### Advanced Configuration
+![getTokenGif](https://github.com/kaisiok/splendorpractice/assets/95914687/a0096ba0-76d8-46c8-91f9-7872f2bedc46)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+토큰 영역을 클릭해 가져올 토큰을 선택합니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+토큰은 서로 색이 다른 토큰을 각각1개씩 총3개, 또는 서로 색이 같은 토큰을 2개까지 가져올 수 있습니다.
 
-### `npm run build` fails to minify
+단, 특정 토큰이 3장 이하라면, 그 토큰을 2개 가져갈 수 없습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+소유할 수 있는 토큰의 최대 갯수는 10개입니다.
+
+## 카드 손에 선점하기
+
+![getCard](https://github.com/kaisiok/splendorpractice/assets/95914687/4b0ebf40-1879-4a52-b5e2-b2a87f3ee068)
+
+
+카드의 비용을 지불하지 않고, 손으로 가져올 수 있습니다.(아직 구매한것이 아니므로 점수가 되지 않습니다)
+
+이 때 테이블에 노란색 코인이 남아있다면, 노란색 코인 1개도 같이 가져옵니다.
+
+노란색 코인은 카드를 구매할 때 원하는 색 코인으로 대체해서 사용이 가능한 코인입니다.
+
+최대 3장까지 카드를 선점할 수 있습니다.
+
+손으로 가져온 카드는 내 차례에 비용과 행동 한번을 똑같이 지불하고 구매할 수 있습니다.
+
+공개된 카드 외에도, 원한다면 덱 맨 위 카드를 손으로 가져올 수 있습니다.
+
+## 추가 규칙
+
+![getTile](https://github.com/kaisiok/splendorpractice/assets/95914687/d7669643-d2e4-417d-ad23-fe078582a988)
+
+
+플레이어는 자기 차례에 단 한번씩만 행동 할 수 있습니다.
+
+행동을 한 후 Next버튼을 누르면 다음 플레이어에게 차례가 넘어갑니다.
+
+귀족 타일의 하단에는 그 귀족이 선호하는 카드의 타입과 숫자가 적혀 있습니다.
+
+조건을 가장 빠르게 달성한 사람은 귀족 타일을 가져갈 수 있습니다.
+
+모든 귀족타일은 3점의 가치를 가지고 있습니다.
+
+## 게임 종료
+
+어떤 플레이어라도 15점 이상을 달성한 플레이어가 나왔다면, 그 라운드의 4번플레이어까지 차례가 진행된 후 게임이 종료됩니다.
+
+게임이 종료된 후 가장 많은 점수를 획득한 플레이어가 승리합니다.
+
+## 개발자 모드
+
+기본적으로 Next 버튼은 행동을 하기 전까진 비활성화 상태입니다.
+
+그러나 개발자 모드를 on으로 설정하면 아무런 행동을 하지 않아도 턴을 넘길 수 있습니다.
+
