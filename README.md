@@ -12,7 +12,7 @@ css, 알고리즘을 연습하기 위한 스몰 프로젝트로서, React와 sty
 
 
 ## 기본 컨셉 
-![스크린샷 2023-06-14 오후 6 13 03](https://github.com/kaisiok/splendorpractice/assets/95914687/66c73d44-3236-4438-ba90-7f273a5f996d)
+![스크린샷 2023-06-14 오후 6 13 03](https://github.com/kaisiok/splendorpractice/assets/95914687/80e2b13c-9f5a-4330-a44c-80373baf2838)
 
 
 토큰을 모아 카드(그림)을 구매합니다. 
@@ -35,7 +35,7 @@ css, 알고리즘을 연습하기 위한 스몰 프로젝트로서, React와 sty
 
 ## 카드 구매하기
 
-![buyCard](https://github.com/kaisiok/splendorpractice/assets/95914687/96edce68-1551-4db9-99f9-7f3aa8622bd0)
+![buyCard](https://github.com/kaisiok/splendorpractice/assets/95914687/6892e6dd-ad75-4901-b289-074b4f05dd26)
 
 
 카드의 아래쪽엔 그 카드를 사기 위한 비용이 표시되어 있습니다.
@@ -50,7 +50,7 @@ css, 알고리즘을 연습하기 위한 스몰 프로젝트로서, React와 sty
 
 ## 토큰 가져오기
 
-![getTokenGif](https://github.com/kaisiok/splendorpractice/assets/95914687/a0096ba0-76d8-46c8-91f9-7872f2bedc46)
+![getTokenGif](https://github.com/kaisiok/splendorpractice/assets/95914687/2b7de0c0-35fd-4846-977b-05483baa39ee)
 
 
 토큰 영역을 클릭해 가져올 토큰을 선택합니다.
@@ -63,7 +63,7 @@ css, 알고리즘을 연습하기 위한 스몰 프로젝트로서, React와 sty
 
 ## 카드 손에 선점하기
 
-![getCard](https://github.com/kaisiok/splendorpractice/assets/95914687/4b0ebf40-1879-4a52-b5e2-b2a87f3ee068)
+![getCard](https://github.com/kaisiok/splendorpractice/assets/95914687/5682900c-a88d-4c00-a670-d309a099ebee)
 
 
 카드의 비용을 지불하지 않고, 손으로 가져올 수 있습니다.(아직 구매한것이 아니므로 점수가 되지 않습니다)
@@ -80,7 +80,7 @@ css, 알고리즘을 연습하기 위한 스몰 프로젝트로서, React와 sty
 
 ## 추가 규칙
 
-![getTile](https://github.com/kaisiok/splendorpractice/assets/95914687/d7669643-d2e4-417d-ad23-fe078582a988)
+![getTile](https://github.com/kaisiok/splendorpractice/assets/95914687/9fe85854-20fb-44ee-9217-aeeb3f09a40e)
 
 
 플레이어는 자기 차례에 단 한번씩만 행동 할 수 있습니다.
